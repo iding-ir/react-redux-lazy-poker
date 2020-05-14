@@ -1,7 +1,26 @@
 {
   "name": "react-redux-lazy-poker",
   "version": "0.1.0",
-  "private": true,
+  "description": "Sit back and watch yourself play Texas Hold'em like a pro",
+  "keywords": [
+    "react",
+    "redux",
+    "poker",
+    "Texas Hold'em"
+  ],
+  "author": {
+    "name": "Aydin Ghane Kh.",
+    "email": "aydin.ghane.kh@gmail.com",
+    "url": "http://iding.ir"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iding-ir/react-redux-lazy-poker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iding-ir/react-redux-lazy-poker/issues"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
