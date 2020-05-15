@@ -6,29 +6,14 @@ import Player from "./player";
 class Players extends Component {
   state = {};
   render() {
-    let {
-      players,
-      canAddPlayer,
-      onAddPlayer,
-      onRemovePlayer,
-      onChangeName,
-      onCheckName,
-      canRemovePlayer,
-    } = this.props;
+    let { players, addPlayer, removePlayer } = this.props;
 
     return (
       <div className="players">
         <div className="players-container">
           {players.map((player, key) => {
             return (
-              <Player
-                key={key}
-                player={player}
-                onRemovePlayer={onRemovePlayer}
-                onChangeName={onChangeName}
-                onCheckName={onCheckName}
-                canRemovePlayer={canRemovePlayer}
-              />
+              <Player key={key} player={player} removePlayer={removePlayer} />
             );
           })}
         </div>
@@ -36,9 +21,8 @@ class Players extends Component {
         <div className="players-add">
           <button
             id="players-add"
-            disabled={!canAddPlayer}
             className="waves-effect waves-light btn-large btn-floating pink"
-            onClick={onAddPlayer}
+            onClick={addPlayer}
           >
             <i className="material-icons left">add</i>
           </button>

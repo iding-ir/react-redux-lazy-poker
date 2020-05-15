@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
+import playersReducer from "./players";
+
 const combinedReducers = combineReducers({
-  placeholder: "placeholder",
+  players: playersReducer,
 });
 
 export default combinedReducers;
