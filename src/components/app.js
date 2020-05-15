@@ -1,12 +1,17 @@
 import React, { Component } from "react";
+import "materialize-css/dist/css/materialize.min.css";
+import M from "materialize-css";
 
 import "./app.css";
+import Navbar from "./navbar";
 
 class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <header className="app-header"></header>
+        <header className="app-header">
+          <Navbar />
+        </header>
 
         <div className="app-controls"></div>
 
