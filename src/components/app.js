@@ -8,6 +8,8 @@ import "./app.css";
 import Navbar from "./navbar";
 import Players from "./players";
 import { addPlayer, removePlayer } from "../actions/players";
+import { moveStage } from "../actions/stage";
+import { dealPlayers, dealFlop, dealTurn, dealRiver } from "../actions/deals";
 
 import Ranking from "./ranking";
 import Deck from "./deck";
@@ -49,7 +51,7 @@ class App extends Component {
   render() {
     let { logs, deck } = this.state;
 
-    const { players, addPlayer, removePlayer } = this.props;
+    const { players, stage, addPlayer, removePlayer, moveStage } = this.props;
 
     return (
       <div className="app-container">
@@ -58,13 +60,7 @@ class App extends Component {
         </header>
 
         <div className="app-controls">
-          <Controls
-            state={this.state}
-            onDeal={this.handleDeal}
-            onAutoplay={this.toggleAutoplay}
-            onRestart={this.handleRestart}
-            logs={logs}
-          />
+          <Controls stage={stage} onDeal={moveStage} />
         </div>
 
         <div className="app-ranking">
@@ -561,6 +557,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   players: state.players,
+  stage: state.stage,
+  deals: state.deals,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -568,6 +566,11 @@ const mapDispatchToProps = (dispatch) =>
     {
       addPlayer,
       removePlayer,
+      moveStage,
+      dealPlayers,
+      dealFlop,
+      dealTurn,
+      dealRiver,
     },
     dispatch
   );
