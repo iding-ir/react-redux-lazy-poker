@@ -1,23 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./deck.css";
 import Card from "./card";
 
-class Deck extends Component {
-  state = {};
-  render() {
-    let { deck } = this.props;
+const Deck = (props) => {
+  let { cards } = props;
 
-    return (
-      <div className="deck">
-        <div className="deck-cards">
-          {deck.map((card, index) => {
-            return <Card key={index} card={card} />;
-          })}
-        </div>
+  return (
+    <div className="deck">
+      <div className="deck-cards">
+        {cards.table.map((card, index) => {
+          return <Card key={index} card={card} />;
+        })}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+Deck.defaultProps = {
+  cards: [],
+};
 
 export default Deck;

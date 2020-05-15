@@ -94,7 +94,9 @@ class App extends Component {
           <Ranking players={players} />
         </div>
 
-        <div className="app-deck"></div>
+        <div className="app-deck">
+          <Deck cards={cards} />
+        </div>
 
         <div className="app-players">
           <Players
