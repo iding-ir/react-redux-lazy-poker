@@ -5,7 +5,6 @@ export const MOVE_STAGE = "MOVE_STAGE";
 
 export const TOGGLE_AUTOPLAY = "TOGGLE_AUTOPLAY";
 
-export const DEAL_PLAYERS = "DEAL_PLAYERS";
-export const DEAL_FLOP = "DEAL_FLOP";
-export const DEAL_TURN = "DEAL_TURN";
-export const DEAL_RIVER = "DEAL_RIVER";
+export const REFRESH_DEALER = "REFRESH_DEALER";
+export const DEAL_PLAYER = "DEAL_PLAYER";
+export const DEAL_TABLE = "DEAL_TABLE";

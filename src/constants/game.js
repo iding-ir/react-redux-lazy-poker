@@ -1,5 +1,4 @@
 export const NUMBERS = [
-  "1",
   "2",
   "3",
   "4",

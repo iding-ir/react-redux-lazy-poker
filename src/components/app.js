@@ -10,7 +10,7 @@ import Players from "./players";
 import { addPlayer, removePlayer } from "../actions/players";
 import { moveStage } from "../actions/stage";
 import { toggleAutoplay } from "../actions/autoplay";
-import { dealPlayers, dealFlop, dealTurn, dealRiver } from "../actions/deals";
+import { refreshDealer, dealPlayer, dealTable } from "../actions/cards";
 
 import Ranking from "./ranking";
 import Deck from "./deck";
@@ -19,7 +19,11 @@ import Controls from "./controls";
 class App extends Component {
   state = {};
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { refreshDealer } = this.props;
+
+    refreshDealer();
+  }
 
   render() {
     const {
@@ -30,7 +34,47 @@ class App extends Component {
       removePlayer,
       moveStage,
       toggleAutoplay,
+      refreshDealer,
+      dealPlayer,
+      dealTable,
     } = this.props;
+
+    const onDeal = () => {
+      switch (stage.slug) {
+        case "new-round":
+          Object.values(players).forEach((player) => {
+            for (let i = 0; i < 2; i++) {
+              dealPlayer(player.id);
+            }
+          });
+
+          break;
+        case "preflop":
+          dealTable();
+          dealTable();
+          dealTable();
+
+          break;
+        case "flop":
+          dealTable();
+
+          break;
+        case "turn":
+          dealTable();
+
+          break;
+        case "river":
+          break;
+        case "result":
+          refreshDealer();
+
+          break;
+        default:
+          return;
+      }
+
+      moveStage();
+    };
 
     return (
       <div className="app-container">
@@ -42,7 +86,7 @@ class App extends Component {
           <Controls
             stage={stage}
             autoplay={autoplay}
-            onDeal={moveStage}
+            onDeal={onDeal}
             onAutoplay={toggleAutoplay}
           />
         </div>
@@ -69,7 +113,7 @@ const mapStateToProps = (state) => ({
   players: state.players,
   stage: state.stage,
   autoplay: state.autoplay,
-  deals: state.deals,
+  cards: state.cards,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -79,10 +123,9 @@ const mapDispatchToProps = (dispatch) =>
       removePlayer,
       moveStage,
       toggleAutoplay,
-      dealPlayers,
-      dealFlop,
-      dealTurn,
-      dealRiver,
+      refreshDealer,
+      dealPlayer,
+      dealTable,
     },
     dispatch
   );

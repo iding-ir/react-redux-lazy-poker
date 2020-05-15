@@ -26,9 +26,9 @@ const Player = (props) => {
         </div>
 
         <div className="players-cards">
-          {player.round.cards.map((card, index) => {
+          {/* {player.cards.map((card, index) => {
             return <Card key={index} card={card} />;
-          })}
+          })} */}
         </div>
       </div>
     </React.Fragment>
