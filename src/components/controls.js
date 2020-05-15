@@ -6,20 +6,20 @@ import "./controls.css";
 class Controls extends Component {
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
-      let logsModal = document.querySelector("#logs-modal");
+      const logsModal = document.querySelector("#logs-modal");
 
       M.Modal.init(logsModal);
 
-      let restartModal = document.querySelector("#restart-modal");
+      const restartModal = document.querySelector("#restart-modal");
 
       M.Modal.init(restartModal);
     });
   }
 
   render() {
-    let { onDeal } = this.props;
-
-    let { icon, button } = this.props.stage;
+    const { stage, autoplay, onDeal, onAutoplay } = this.props;
+    const { icon, button } = stage;
+    const autoplayIcon = autoplay ? "pause" : "play_arrow";
 
     return (
       <div className="controls">
@@ -36,7 +36,10 @@ class Controls extends Component {
           <button
             id="controls-autoplay"
             className="waves-effect waves-light btn-large pink darken-2"
-          ></button>
+            onClick={onAutoplay}
+          >
+            <i className="material-icons left">{autoplayIcon}</i>
+          </button>
         </div>
 
         <div className="controls-spacer"></div>

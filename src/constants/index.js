@@ -3,6 +3,8 @@ export const REMOVE_PLAYER = "REMOVE_PLAYER";
 
 export const MOVE_STAGE = "MOVE_STAGE";
 
+export const TOGGLE_AUTOPLAY = "TOGGLE_AUTOPLAY";
+
 export const DEAL_PLAYERS = "DEAL_PLAYERS";
 export const DEAL_FLOP = "DEAL_FLOP";
 export const DEAL_TURN = "DEAL_TURN";
