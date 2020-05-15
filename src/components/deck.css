@@ -1,0 +1,24 @@
+.deck-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-height: 6rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .deck-cards {
+    min-height: 9rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .deck-cards {
+    min-height: 12rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .deck-cards {
+    min-height: 15rem;
+  }
+}
