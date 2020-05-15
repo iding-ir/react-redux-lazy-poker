@@ -5,19 +5,19 @@ import "./card.css";
 class Card extends Component {
   state = {};
   render() {
-    let { mark, shape, highlight } = this.props.card
+    let { number, spot, highlight } = this.props.card
       ? this.props.card
-      : { mark: "", shape: "none", highlight: false };
+      : { number: "", spot: "none", highlight: false };
 
-    const cardIcon = "cards-icon-" + shape;
+    const cardIcon = "cards-icon-" + spot;
     const cardClass = "cards-card" + this.getSide();
 
     return (
       <React.Fragment>
         <div className={cardClass} data-highlight={highlight}>
-          <div>{mark}</div>
+          <div>{number}</div>
           <div className={cardIcon}></div>
-          <div>{mark}</div>
+          <div>{number}</div>
           <div className="cards-back">
             <img src="/assets/images/card.png" alt="" />
           </div>

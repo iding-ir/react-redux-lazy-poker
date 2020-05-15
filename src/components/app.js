@@ -17,8 +17,6 @@ import Deck from "./deck";
 import Controls from "./controls";
 
 class App extends Component {
-  state = {};
-
   componentDidMount() {
     const { refreshDealer } = this.props;
 
@@ -27,6 +25,7 @@ class App extends Component {
 
   render() {
     const {
+      cards,
       players,
       stage,
       autoplay,
@@ -99,6 +98,7 @@ class App extends Component {
 
         <div className="app-players">
           <Players
+            cards={cards}
             players={players}
             addPlayer={addPlayer}
             removePlayer={removePlayer}

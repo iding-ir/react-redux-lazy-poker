@@ -3,7 +3,7 @@ import React from "react";
 import Card from "./card";
 
 const Player = (props) => {
-  let { player, removePlayer } = props;
+  let { hand, player, removePlayer } = props;
 
   return (
     <React.Fragment>
@@ -26,13 +26,17 @@ const Player = (props) => {
         </div>
 
         <div className="players-cards">
-          {/* {player.cards.map((card, index) => {
-            return <Card key={index} card={card} />;
-          })} */}
+          {hand.map((card, index) => (
+            <Card key={index} card={card} />
+          ))}
         </div>
       </div>
     </React.Fragment>
   );
+};
+
+Player.defaultProps = {
+  hand: [],
 };
 
 export default Player;
