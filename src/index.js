@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import "./css/vars.css";
-import "./index.css";
+import "./css/index.css";
 import store from "./stores";
 import App from "./components/app";
 
