@@ -20,9 +20,6 @@ import {
   flushCondition,
   winningHands,
   stages,
-  initialNumberOfPlayers,
-  minNumberOfPlayers,
-  maxNumberOfPlayers,
 } from "./definitions";
 
 class App extends Component {
@@ -39,18 +36,6 @@ class App extends Component {
     gameHasStarted: false,
   };
 
-  player = {
-    name: "Player",
-    id: "1",
-    round: {
-      cards: [null, null],
-      winner: false,
-      bests: [],
-      hand: undefined,
-    },
-    points: 0,
-  };
-
   componentWillMount() {
     let state = this.generateState();
 
@@ -62,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    let { logs, deck, gameHasStarted } = this.state;
+    let { logs, deck } = this.state;
 
     const { players, addPlayer, removePlayer } = this.props;
 
@@ -107,15 +92,6 @@ class App extends Component {
     state.dealer = this.populateDealer();
 
     return state;
-  };
-
-  generatePlayer = (id, name) => {
-    let player = JSON.parse(JSON.stringify(this.player));
-
-    player.name = name;
-    player.id = id;
-
-    return player;
   };
 
   populateDealer = () => {
@@ -183,37 +159,6 @@ class App extends Component {
     let state = this.generateState();
 
     this.setState(state);
-  };
-
-  handleAddPlayer = () => {
-    let players = [...this.state.players];
-    let number = players.length + 1;
-
-    if (number > maxNumberOfPlayers) return;
-
-    let id =
-      this.state.players
-        .map((player) => parseInt(player.id))
-        .sort((a, b) => b - a)[0] + 1;
-
-    let name = "Player " + id;
-    let player = this.generatePlayer(id, name);
-
-    players.push(player);
-
-    this.setState({ players });
-  };
-
-  handleRemovePlayer = (id) => {
-    let currentPlayers = [...this.state.players];
-
-    if (currentPlayers.length === 1) return;
-
-    let players = currentPlayers.filter((player) => {
-      return player.id === id ? false : true;
-    });
-
-    this.setState({ players });
   };
 
   handleChangeName = (player, name) => {
