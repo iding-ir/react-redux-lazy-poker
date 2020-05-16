@@ -22,6 +22,7 @@ import {
   NUMBER_OF_CARDS_FOR_FLOP,
   NUMBER_OF_CARDS_FOR_TURN,
   NUMBER_OF_CARDS_FOR_RIVER,
+  AUTOPLAY_DELAY_MS,
 } from "../configs";
 import { repeat } from "../utils/repeat";
 import Ranking from "./ranking";
@@ -37,6 +38,18 @@ class App extends Component {
     repeat(NUMBER_OF_DEFAULT_PLAYERS, addPlayer);
   }
 
+  componentDidUpdate() {
+    const { autoplay } = this.props;
+
+    if (autoplay) {
+      clearInterval(this.interval);
+
+      this.interval = setTimeout(() => {
+        this.onDeal();
+      }, AUTOPLAY_DELAY_MS);
+    }
+  }
+
   render() {
     const {
       cards,
@@ -48,53 +61,8 @@ class App extends Component {
       removePlayer,
       changeName,
       checkName,
-      moveStage,
-      startGame,
-      endGame,
       toggleAutoplay,
-      refreshDealer,
-      dealPlayer,
-      dealTable,
     } = this.props;
-
-    const onDeal = () => {
-      switch (stage.slug) {
-        case "new-round":
-          startGame();
-
-          Object.values(players).forEach((player) => {
-            repeat(NUMBER_OF_CARDS_PER_PLAYER, () => {
-              dealPlayer(player.id);
-            });
-          });
-
-          break;
-        case "preflop":
-          repeat(NUMBER_OF_CARDS_FOR_FLOP, dealTable);
-
-          break;
-        case "flop":
-          repeat(NUMBER_OF_CARDS_FOR_TURN, dealTable);
-
-          break;
-        case "turn":
-          repeat(NUMBER_OF_CARDS_FOR_RIVER, dealTable);
-
-          break;
-        case "river":
-          endGame();
-
-          break;
-        case "result":
-          refreshDealer();
-
-          break;
-        default:
-          return;
-      }
-
-      moveStage();
-    };
 
     return (
       <div className="app-container">
@@ -106,7 +74,7 @@ class App extends Component {
           <Controls
             stage={stage}
             autoplay={autoplay}
-            onDeal={onDeal}
+            onDeal={this.onDeal}
             onAutoplay={toggleAutoplay}
           />
         </div>
@@ -133,6 +101,56 @@ class App extends Component {
       </div>
     );
   }
+
+  onDeal = () => {
+    const {
+      players,
+      stage,
+      moveStage,
+      startGame,
+      endGame,
+      refreshDealer,
+      dealPlayer,
+      dealTable,
+    } = this.props;
+
+    switch (stage.slug) {
+      case "new-round":
+        startGame();
+
+        Object.values(players).forEach((player) => {
+          repeat(NUMBER_OF_CARDS_PER_PLAYER, () => {
+            dealPlayer(player.id);
+          });
+        });
+
+        break;
+      case "preflop":
+        repeat(NUMBER_OF_CARDS_FOR_FLOP, dealTable);
+
+        break;
+      case "flop":
+        repeat(NUMBER_OF_CARDS_FOR_TURN, dealTable);
+
+        break;
+      case "turn":
+        repeat(NUMBER_OF_CARDS_FOR_RIVER, dealTable);
+
+        break;
+      case "river":
+        endGame();
+
+        break;
+      case "result":
+        refreshDealer();
+
+        break;
+      default:
+        return;
+    }
+
+    moveStage();
+  };
 }
 
 const mapStateToProps = (state) => ({
