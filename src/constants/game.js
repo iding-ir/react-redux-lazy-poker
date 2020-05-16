@@ -54,3 +54,9 @@ export const STAGES = [
     icon: "refresh",
   },
 ];
+
+export const defaultCard = {
+  number: "",
+  spot: "",
+  highlight: false,
+};

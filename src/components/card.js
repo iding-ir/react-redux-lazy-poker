@@ -7,7 +7,7 @@ const Card = (props) => {
   const { number, spot, highlight } = props.card;
   const cardIcon = `cards-icon-${spot}`;
   const cardClass = classnames("cards-card", {
-    "cards-visible": props.card !== null,
+    "cards-visible": props.card.spot !== "",
   });
 
   return (
@@ -22,12 +22,6 @@ const Card = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-Card.defaultProps = {
-  number: "",
-  spot: "none",
-  highlight: false,
 };
 
 export default Card;

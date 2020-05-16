@@ -1,9 +1,10 @@
 import React from "react";
 
 import Card from "./card";
+import { defaultCard } from "../constants/game";
 
 const Player = (props) => {
-  let { hand, player, removePlayer } = props;
+  const { hand, player, removePlayer } = props;
 
   return (
     <React.Fragment>
@@ -36,7 +37,7 @@ const Player = (props) => {
 };
 
 Player.defaultProps = {
-  hand: [],
+  hand: [defaultCard, defaultCard],
 };
 
 export default Player;

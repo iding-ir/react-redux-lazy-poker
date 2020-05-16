@@ -4,7 +4,7 @@ import "./deck.css";
 import Card from "./card";
 
 const Deck = (props) => {
-  let { cards } = props;
+  const { cards } = props;
 
   return (
     <div className="deck">
@@ -15,10 +15,6 @@ const Deck = (props) => {
       </div>
     </div>
   );
-};
-
-Deck.defaultProps = {
-  cards: [],
 };
 
 export default Deck;

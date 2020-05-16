@@ -4,7 +4,7 @@ import "./players.css";
 import Player from "./player";
 
 const Players = (props) => {
-  let { cards, players, addPlayer, removePlayer } = props;
+  const { cards, players, addPlayer, removePlayer } = props;
 
   return (
     <div className="players">
