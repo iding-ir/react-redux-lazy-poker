@@ -13,7 +13,7 @@ import {
   changeName,
   checkName,
 } from "../actions/players";
-import { moveStage } from "../actions/stage";
+import { moveStage, startGame, endGame } from "../actions/game";
 import { toggleAutoplay } from "../actions/autoplay";
 import { refreshDealer, dealPlayer, dealTable } from "../actions/cards";
 import {
@@ -41,6 +41,7 @@ class App extends Component {
     const {
       cards,
       players,
+      gameStarted,
       stage,
       autoplay,
       addPlayer,
@@ -48,6 +49,8 @@ class App extends Component {
       changeName,
       checkName,
       moveStage,
+      startGame,
+      endGame,
       toggleAutoplay,
       refreshDealer,
       dealPlayer,
@@ -57,6 +60,8 @@ class App extends Component {
     const onDeal = () => {
       switch (stage.slug) {
         case "new-round":
+          startGame();
+
           Object.values(players).forEach((player) => {
             repeat(NUMBER_OF_CARDS_PER_PLAYER, () => {
               dealPlayer(player.id);
@@ -77,6 +82,8 @@ class App extends Component {
 
           break;
         case "river":
+          endGame();
+
           break;
         case "result":
           refreshDealer();
@@ -116,6 +123,7 @@ class App extends Component {
           <Players
             cards={cards}
             players={players}
+            gameStarted={gameStarted}
             addPlayer={addPlayer}
             removePlayer={removePlayer}
             changeName={changeName}
@@ -129,7 +137,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   players: state.players,
-  stage: state.stage,
+  stage: state.game.stage,
+  gameStarted: state.game.started,
   autoplay: state.autoplay,
   cards: state.cards,
 });
@@ -142,6 +151,8 @@ const mapDispatchToProps = (dispatch) =>
       changeName,
       checkName,
       moveStage,
+      startGame,
+      endGame,
       toggleAutoplay,
       refreshDealer,
       dealPlayer,

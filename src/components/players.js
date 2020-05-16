@@ -7,6 +7,7 @@ const Players = (props) => {
   const {
     cards,
     players,
+    gameStarted,
     addPlayer,
     removePlayer,
     changeName,
@@ -33,6 +34,7 @@ const Players = (props) => {
           id="players-add"
           className="waves-effect waves-light btn-large btn-floating pink"
           onClick={addPlayer}
+          disabled={gameStarted}
         >
           <i className="material-icons left">add</i>
         </button>

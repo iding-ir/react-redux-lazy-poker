@@ -4,6 +4,8 @@ export const CHANGE_NAME = "CHANGE_NAME";
 export const CHECK_NAME = "CHECK_NAME";
 
 export const MOVE_STAGE = "MOVE_STAGE";
+export const START_GAME = "START_GAME";
+export const END_GAME = "END_GAME";
 
 export const TOGGLE_AUTOPLAY = "TOGGLE_AUTOPLAY";
 
