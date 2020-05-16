@@ -3,11 +3,21 @@ import React from "react";
 import "./deck.css";
 import Card from "./card";
 import { defaultCard } from "../constants/game";
+import {
+  NUMBER_OF_CARDS_FOR_FLOP,
+  NUMBER_OF_CARDS_FOR_TURN,
+  NUMBER_OF_CARDS_FOR_RIVER,
+} from "../configs";
 
 const Deck = (props) => {
   let { table } = props.cards;
 
-  while (table.length < 5) {
+  const deckSize =
+    NUMBER_OF_CARDS_FOR_FLOP +
+    NUMBER_OF_CARDS_FOR_TURN +
+    NUMBER_OF_CARDS_FOR_RIVER;
+
+  while (table.length < deckSize) {
     table = [...table, defaultCard];
   }
 

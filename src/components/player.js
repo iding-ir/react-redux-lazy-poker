@@ -2,6 +2,7 @@ import React from "react";
 
 import Card from "./card";
 import { defaultCard } from "../constants/game";
+import { NUMBER_OF_CARDS_PER_PLAYER } from "../configs";
 
 const Player = (props) => {
   const { hand, player, removePlayer } = props;
@@ -37,7 +38,7 @@ const Player = (props) => {
 };
 
 Player.defaultProps = {
-  hand: [defaultCard, defaultCard],
+  hand: Array(NUMBER_OF_CARDS_PER_PLAYER).fill(defaultCard),
 };
 
 export default Player;

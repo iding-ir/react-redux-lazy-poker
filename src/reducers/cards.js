@@ -15,9 +15,8 @@ const reducer = (state = INITIAL_STATE, action) => {
     case REFRESH_DEALER:
       return {
         ...state,
+        ...INITIAL_STATE,
         dealer: allCards(),
-        players: {},
-        table: [],
       };
     case DEAL_PLAYER:
       return {

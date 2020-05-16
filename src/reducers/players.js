@@ -9,7 +9,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         {
           name: "Player",
-          id: new Date().getTime(),
+          id: Math.ceil(Math.random() * 9999999),
           points: 0,
         },
       ];

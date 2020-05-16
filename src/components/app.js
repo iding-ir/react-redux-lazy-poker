@@ -11,6 +11,13 @@ import { addPlayer, removePlayer } from "../actions/players";
 import { moveStage } from "../actions/stage";
 import { toggleAutoplay } from "../actions/autoplay";
 import { refreshDealer, dealPlayer, dealTable } from "../actions/cards";
+import {
+  NUMBER_OF_DEFAULT_PLAYERS,
+  NUMBER_OF_CARDS_PER_PLAYER,
+  NUMBER_OF_CARDS_FOR_FLOP,
+  NUMBER_OF_CARDS_FOR_TURN,
+  NUMBER_OF_CARDS_FOR_RIVER,
+} from "../configs";
 
 import Ranking from "./ranking";
 import Deck from "./deck";
@@ -18,9 +25,13 @@ import Controls from "./controls";
 
 class App extends Component {
   componentDidMount() {
-    const { refreshDealer } = this.props;
+    const { addPlayer, refreshDealer } = this.props;
 
     refreshDealer();
+
+    for (let i = 1; i <= NUMBER_OF_DEFAULT_PLAYERS; i++) {
+      addPlayer();
+    }
   }
 
   render() {
@@ -42,24 +53,28 @@ class App extends Component {
       switch (stage.slug) {
         case "new-round":
           Object.values(players).forEach((player) => {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 1; i <= NUMBER_OF_CARDS_PER_PLAYER; i++) {
               dealPlayer(player.id);
             }
           });
 
           break;
         case "preflop":
-          dealTable();
-          dealTable();
-          dealTable();
+          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_FLOP; i++) {
+            dealTable();
+          }
 
           break;
         case "flop":
-          dealTable();
+          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_TURN; i++) {
+            dealTable();
+          }
 
           break;
         case "turn":
-          dealTable();
+          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_RIVER; i++) {
+            dealTable();
+          }
 
           break;
         case "river":

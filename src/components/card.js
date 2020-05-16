@@ -6,16 +6,19 @@ import "./card.css";
 const Card = (props) => {
   const { number, spot, highlight } = props.card;
   const cardIcon = `cards-icon-${spot}`;
-  const cardClass = classnames("cards-card", {
+  const cardClasses = classnames("cards-card", {
     "cards-visible": props.card.spot !== "",
   });
 
   return (
     <React.Fragment>
-      <div className={cardClass} data-highlight={highlight}>
+      <div className={cardClasses} data-highlight={highlight}>
         <div>{number}</div>
+
         <div className={cardIcon}></div>
+
         <div>{number}</div>
+
         <div className="cards-back">
           <img src="/assets/images/card.png" alt="" />
         </div>
