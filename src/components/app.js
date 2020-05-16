@@ -18,7 +18,7 @@ import {
   NUMBER_OF_CARDS_FOR_TURN,
   NUMBER_OF_CARDS_FOR_RIVER,
 } from "../configs";
-
+import { repeat } from "../utils/repeat";
 import Ranking from "./ranking";
 import Deck from "./deck";
 import Controls from "./controls";
@@ -29,9 +29,7 @@ class App extends Component {
 
     refreshDealer();
 
-    for (let i = 1; i <= NUMBER_OF_DEFAULT_PLAYERS; i++) {
-      addPlayer();
-    }
+    repeat(NUMBER_OF_DEFAULT_PLAYERS, addPlayer);
   }
 
   render() {
@@ -53,28 +51,22 @@ class App extends Component {
       switch (stage.slug) {
         case "new-round":
           Object.values(players).forEach((player) => {
-            for (let i = 1; i <= NUMBER_OF_CARDS_PER_PLAYER; i++) {
+            repeat(NUMBER_OF_CARDS_PER_PLAYER, () => {
               dealPlayer(player.id);
-            }
+            });
           });
 
           break;
         case "preflop":
-          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_FLOP; i++) {
-            dealTable();
-          }
+          repeat(NUMBER_OF_CARDS_FOR_FLOP, dealTable);
 
           break;
         case "flop":
-          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_TURN; i++) {
-            dealTable();
-          }
+          repeat(NUMBER_OF_CARDS_FOR_TURN, dealTable);
 
           break;
         case "turn":
-          for (let i = 1; i <= NUMBER_OF_CARDS_FOR_RIVER; i++) {
-            dealTable();
-          }
+          repeat(NUMBER_OF_CARDS_FOR_RIVER, dealTable);
 
           break;
         case "river":
