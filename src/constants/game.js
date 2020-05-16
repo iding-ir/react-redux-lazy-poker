@@ -14,7 +14,7 @@ export const NUMBERS = [
   "A",
 ];
 
-export const SPOTS = ["club", "spade", "heart", "diamond"];
+export const SPOTS = ["c", "s", "h", "d"];
 
 export const STAGES = [
   {

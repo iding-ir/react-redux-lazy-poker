@@ -140,6 +140,8 @@ class App extends Component {
       case "river":
         endGame();
 
+        this.calculate();
+
         break;
       case "result":
         refreshDealer();
@@ -150,6 +152,16 @@ class App extends Component {
     }
 
     moveStage();
+  };
+
+  calculate = () => {
+    const { players, cards } = this.props;
+
+    Object.values(players).forEach((player) => {
+      const final = [...cards.table, ...cards.players[player.id]];
+
+      console.log(final);
+    });
   };
 }
 
