@@ -1,5 +1,7 @@
 export const ADD_PLAYER = "ADD_PLAYER";
 export const REMOVE_PLAYER = "REMOVE_PLAYER";
+export const CHANGE_NAME = "CHANGE_NAME";
+export const CHECK_NAME = "CHECK_NAME";
 
 export const MOVE_STAGE = "MOVE_STAGE";
 

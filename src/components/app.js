@@ -7,7 +7,12 @@ import M from "materialize-css";
 import "./app.css";
 import Navbar from "./navbar";
 import Players from "./players";
-import { addPlayer, removePlayer } from "../actions/players";
+import {
+  addPlayer,
+  removePlayer,
+  changeName,
+  checkName,
+} from "../actions/players";
 import { moveStage } from "../actions/stage";
 import { toggleAutoplay } from "../actions/autoplay";
 import { refreshDealer, dealPlayer, dealTable } from "../actions/cards";
@@ -40,6 +45,8 @@ class App extends Component {
       autoplay,
       addPlayer,
       removePlayer,
+      changeName,
+      checkName,
       moveStage,
       toggleAutoplay,
       refreshDealer,
@@ -111,6 +118,8 @@ class App extends Component {
             players={players}
             addPlayer={addPlayer}
             removePlayer={removePlayer}
+            changeName={changeName}
+            checkName={checkName}
           />
         </div>
       </div>
@@ -130,6 +139,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       addPlayer,
       removePlayer,
+      changeName,
+      checkName,
       moveStage,
       toggleAutoplay,
       refreshDealer,

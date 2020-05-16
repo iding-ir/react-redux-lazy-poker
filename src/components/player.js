@@ -5,7 +5,8 @@ import { defaultCard } from "../constants/game";
 import { NUMBER_OF_CARDS_PER_PLAYER } from "../configs";
 
 const Player = (props) => {
-  const { hand, player, removePlayer } = props;
+  const { hand, player, removePlayer, changeName, checkName } = props;
+  const { id, name, points } = player;
 
   return (
     <React.Fragment>
@@ -14,16 +15,25 @@ const Player = (props) => {
           <button
             className="players-remove btn red"
             onClick={() => {
-              removePlayer(player.id);
+              removePlayer(id);
             }}
           >
             <i className="material-icons">remove_circle_outline</i>
           </button>
 
-          <input className="players-name" value={player.name} />
+          <input
+            className="players-name"
+            value={name}
+            onChange={(event) => {
+              changeName(id, event.target.value);
+            }}
+            onBlur={(event) => {
+              checkName(id, event.target.value);
+            }}
+          />
 
           <span className="players-points badge blue new" data-badge-caption="">
-            {player.points}
+            {points}
           </span>
         </div>
 

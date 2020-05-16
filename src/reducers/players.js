@@ -1,4 +1,10 @@
-import { ADD_PLAYER, REMOVE_PLAYER } from "../constants";
+import {
+  ADD_PLAYER,
+  REMOVE_PLAYER,
+  CHANGE_NAME,
+  CHECK_NAME,
+} from "../constants";
+import { RANDOM_PLAYER_NAMES } from "../configs";
 
 const INITIAL_STATE = [];
 
@@ -16,6 +22,24 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case REMOVE_PLAYER:
       return state.filter((player) => player.id !== action.payload);
+    case CHANGE_NAME:
+      return state.map((player) => {
+        if (player.id === action.payload.id) {
+          player.name = action.payload.name;
+        }
+
+        return player;
+      });
+    case CHECK_NAME:
+      return state.map((player) => {
+        if (player.id === action.payload.id && action.payload.name === "") {
+          const random = Math.floor(Math.random() * RANDOM_PLAYER_NAMES.length);
+
+          player.name = RANDOM_PLAYER_NAMES[random];
+        }
+
+        return player;
+      });
     default:
       return state;
   }

@@ -4,7 +4,14 @@ import "./players.css";
 import Player from "./player";
 
 const Players = (props) => {
-  const { cards, players, addPlayer, removePlayer } = props;
+  const {
+    cards,
+    players,
+    addPlayer,
+    removePlayer,
+    changeName,
+    checkName,
+  } = props;
 
   return (
     <div className="players">
@@ -15,6 +22,8 @@ const Players = (props) => {
             hand={cards.players[player.id]}
             player={player}
             removePlayer={removePlayer}
+            changeName={changeName}
+            checkName={checkName}
           />
         ))}
       </div>
