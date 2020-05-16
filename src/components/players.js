@@ -21,6 +21,7 @@ const Players = (props) => {
           <Player
             key={key}
             hand={cards.players[player.id]}
+            players={players}
             player={player}
             removePlayer={removePlayer}
             changeName={changeName}

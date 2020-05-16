@@ -2,10 +2,13 @@ import React from "react";
 
 import Card from "./card";
 import { defaultCard } from "../constants/game";
-import { NUMBER_OF_CARDS_PER_PLAYER } from "../configs";
+import {
+  MINIMUM_NUMBER_OF_PLAYERS,
+  NUMBER_OF_CARDS_PER_PLAYER,
+} from "../configs";
 
 const Player = (props) => {
-  const { hand, player, removePlayer, changeName, checkName } = props;
+  const { hand, players, player, removePlayer, changeName, checkName } = props;
   const { id, name, points } = player;
 
   return (
@@ -17,6 +20,7 @@ const Player = (props) => {
             onClick={() => {
               removePlayer(id);
             }}
+            disabled={players.length <= MINIMUM_NUMBER_OF_PLAYERS}
           >
             <i className="material-icons">remove_circle_outline</i>
           </button>
