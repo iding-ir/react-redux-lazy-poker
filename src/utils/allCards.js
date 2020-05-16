@@ -1,11 +1,11 @@
-import { NUMBERS, SPOTS } from "../constants/game";
+import { RANKS, SUITS } from "../constants/game";
 
 export default () => {
   let all = [];
 
-  SPOTS.forEach((spot) => {
-    NUMBERS.forEach((number) => {
-      all = [...all, { spot, number }];
+  SUITS.forEach((suit) => {
+    RANKS.forEach((rank) => {
+      all = [...all, { suit, rank }];
     });
   });
 

@@ -5,6 +5,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 
 import "./app.css";
+import poker from "../utils/poker-evaluator";
 import Navbar from "./navbar";
 import Players from "./players";
 import {
@@ -160,7 +161,7 @@ class App extends Component {
     Object.values(players).forEach((player) => {
       const final = [...cards.table, ...cards.players[player.id]];
 
-      console.log(final);
+      poker(final);
     });
   };
 }
