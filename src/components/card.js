@@ -1,34 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
+import * as classnames from "classnames";
 
 import "./card.css";
 
-class Card extends Component {
-  state = {};
-  render() {
-    let { number, spot, highlight } = this.props.card
-      ? this.props.card
-      : { number: "", spot: "none", highlight: false };
+const Card = (props) => {
+  const { number, spot, highlight } = props.card;
+  const cardIcon = `cards-icon-${spot}`;
+  const cardClass = classnames("cards-card", {
+    "cards-visible": props.card !== null,
+  });
 
-    const cardIcon = "cards-icon-" + spot;
-    const cardClass = "cards-card" + this.getSide();
-
-    return (
-      <React.Fragment>
-        <div className={cardClass} data-highlight={highlight}>
-          <div>{number}</div>
-          <div className={cardIcon}></div>
-          <div>{number}</div>
-          <div className="cards-back">
-            <img src="/assets/images/card.png" alt="" />
-          </div>
+  return (
+    <React.Fragment>
+      <div className={cardClass} data-highlight={highlight}>
+        <div>{number}</div>
+        <div className={cardIcon}></div>
+        <div>{number}</div>
+        <div className="cards-back">
+          <img src="/assets/images/card.png" alt="" />
         </div>
-      </React.Fragment>
-    );
-  }
+      </div>
+    </React.Fragment>
+  );
+};
 
-  getSide = () => {
-    return this.props.card === null ? "" : " cards-visible";
-  };
-}
+Card.defaultProps = {
+  number: "",
+  spot: "none",
+  highlight: false,
+};
 
 export default Card;
