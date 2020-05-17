@@ -1,4 +1,9 @@
-import { REFRESH_DEALER, DEAL_PLAYER, DEAL_TABLE } from "../constants";
+import {
+  REFRESH_DEALER,
+  DEAL_PLAYER,
+  DEAL_TABLE,
+  HIGHLIGHT,
+} from "../constants";
 
 export const refreshDealer = () => {
   return {
@@ -16,5 +21,12 @@ export const dealPlayer = (id) => {
 export const dealTable = () => {
   return {
     type: DEAL_TABLE,
+  };
+};
+
+export const highlight = (card) => {
+  return {
+    type: HIGHLIGHT,
+    payload: card,
   };
 };

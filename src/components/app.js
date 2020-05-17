@@ -16,7 +16,12 @@ import {
 } from "../actions/players";
 import { moveStage, startGame, endGame } from "../actions/game";
 import { toggleAutoplay } from "../actions/autoplay";
-import { refreshDealer, dealPlayer, dealTable } from "../actions/cards";
+import {
+  refreshDealer,
+  dealPlayer,
+  dealTable,
+  highlight,
+} from "../actions/cards";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
@@ -156,7 +161,7 @@ class App extends Component {
   };
 
   calculate = () => {
-    const { players, cards } = this.props;
+    const { players, cards, highlight } = this.props;
     const Hand = pokersolver.Hand;
     const hands = [];
 
@@ -168,9 +173,14 @@ class App extends Component {
       hands[index] = Hand.solve(final);
     });
 
-    var winner = Hand.winners(hands);
+    const winners = Hand.winners(hands);
+    console.log(winners);
 
-    console.log(winner);
+    winners.forEach((winner) => {
+      winner.cards.forEach((card) => {
+        highlight(card);
+      });
+    });
   };
 }
 
@@ -196,6 +206,7 @@ const mapDispatchToProps = (dispatch) =>
       refreshDealer,
       dealPlayer,
       dealTable,
+      highlight,
     },
     dispatch
   );

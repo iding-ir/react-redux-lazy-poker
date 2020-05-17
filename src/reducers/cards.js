@@ -1,4 +1,9 @@
-import { REFRESH_DEALER, DEAL_PLAYER, DEAL_TABLE } from "../constants";
+import {
+  REFRESH_DEALER,
+  DEAL_PLAYER,
+  DEAL_TABLE,
+  HIGHLIGHT,
+} from "../constants";
 import allCards from "../utils/allCards";
 
 const INITIAL_STATE = {
@@ -37,6 +42,30 @@ const reducer = (state = INITIAL_STATE, action) => {
         ),
         table: [...state.table, picked],
       };
+    case HIGHLIGHT:
+      const table = state.table.map((card) => {
+        card.highlight =
+          (card.suit === action.payload.suit &&
+            card.value === action.payload.value) ||
+          (card.value === "10" && action.payload.value === "1") ||
+          card.highlight;
+
+        return card;
+      });
+
+      const players = state.players;
+
+      Object.values(players).forEach((player) => {
+        player.forEach((card) => {
+          card.highlight =
+            (card.suit === action.payload.suit &&
+              card.value === action.payload.value) ||
+            (card.value === "10" && action.payload.value === "1") ||
+            card.highlight;
+        });
+      });
+
+      return { ...state, table, players };
     default:
       return state;
   }
