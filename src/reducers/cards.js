@@ -22,7 +22,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dealer: state.dealer.filter(
-          (card) => card.rank !== picked.rank || card.suit !== picked.suit
+          (card) => card.value !== picked.value || card.suit !== picked.suit
         ),
         players: {
           ...state.players,
@@ -33,7 +33,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dealer: state.dealer.filter(
-          (card) => card.rank !== picked.rank || card.suit !== picked.suit
+          (card) => card.value !== picked.value || card.suit !== picked.suit
         ),
         table: [...state.table, picked],
       };

@@ -1,4 +1,4 @@
-export const RANKS = [
+export const VALUES = [
   "A",
   "K",
   "Q",
@@ -53,19 +53,6 @@ export const STAGES = [
     button: "New Round",
     icon: "refresh",
   },
-];
-
-export const winningHands = [
-  { hand: "high-card", points: 0 },
-  { hand: "one-pair", points: 1 },
-  { hand: "two-pair", points: 2 },
-  { hand: "three-of-a-kind", points: 3 },
-  { hand: "straight", points: 5 },
-  { hand: "flush", points: 6 },
-  { hand: "full-house", points: 7 },
-  { hand: "four-of-a-kind", points: 10 },
-  { hand: "straight-flush", points: 20 },
-  { hand: "royal-flush", points: 30 },
 ];
 
 export const defaultCard = {

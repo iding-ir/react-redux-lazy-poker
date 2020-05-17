@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
+import pokersolver from "pokersolver";
 
 import "./app.css";
-import poker from "../utils/poker-evaluator";
 import Navbar from "./navbar";
 import Players from "./players";
 import {
@@ -157,12 +157,20 @@ class App extends Component {
 
   calculate = () => {
     const { players, cards } = this.props;
+    const Hand = pokersolver.Hand;
+    const hands = [];
 
-    Object.values(players).forEach((player) => {
-      const final = [...cards.table, ...cards.players[player.id]];
+    Object.values(players).forEach((player, index) => {
+      const final = [...cards.table, ...cards.players[player.id]].map(
+        (card) => card.value + card.suit
+      );
 
-      poker(final);
+      hands[index] = Hand.solve(final);
     });
+
+    var winner = Hand.winners(hands);
+
+    console.log(winner);
   };
 }
 
