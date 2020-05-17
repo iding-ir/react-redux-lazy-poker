@@ -9,7 +9,19 @@ import {
 } from "../configs";
 
 export default (final) => {
-  console.log(checkTwoPair(final));
+  if (checkFlush(final)) {
+    console.log(checkFlush(final));
+  } else if (checkFourOfAKind(final)) {
+    console.log(checkFourOfAKind(final));
+  } else if (checkThreeOfAKind(final)) {
+    console.log(checkThreeOfAKind(final));
+  } else if (checkTwoPair(final)) {
+    console.log(checkTwoPair(final));
+  } else if (checkOnePair(final)) {
+    console.log(checkOnePair(final));
+  } else {
+    console.log(checkHighCard(final));
+  }
 };
 
 function checkHighCard(cards) {
@@ -92,10 +104,21 @@ function checkFourOfAKind(cards) {
 }
 
 function checkFlush(cards) {
-  return groupBySuit(cards).reduce(
-    (total, group) => total || group.length >= FLUSH_CONDITION,
-    false
+  const flush = groupBySuit(cards).filter(
+    (group) => group.length === FLUSH_CONDITION
   );
+
+  const combined = flush.reduce((total, item) => {
+    return [...total, ...item];
+  }, []);
+
+  if (flush.length >= 1) {
+    const final = addHighcards(cards, combined);
+
+    return { final, flush };
+  }
+
+  return false;
 }
 
 function checkStraight(cards) {
