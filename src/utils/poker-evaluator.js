@@ -9,10 +9,12 @@ import {
 } from "../configs";
 
 export default (final) => {
-  if (checkFlush(final)) {
-    console.log(checkFlush(final));
-  } else if (checkFourOfAKind(final)) {
+  if (checkFourOfAKind(final)) {
     console.log(checkFourOfAKind(final));
+  } else if (checkFullHouse(final)) {
+    console.log(checkFullHouse(final));
+  } else if (checkFlush(final)) {
+    console.log(checkFlush(final));
   } else if (checkThreeOfAKind(final)) {
     console.log(checkThreeOfAKind(final));
   } else if (checkTwoPair(final)) {
@@ -32,34 +34,34 @@ function checkHighCard(cards) {
 }
 
 function checkOnePair(cards) {
-  const pairs = groupByRank(cards).filter(
+  const pair = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  if (pairs.length >= 1) {
-    const best = pairs.slice(0, 1).reduce((total, item) => {
+  if (pair.length === 1) {
+    const best = pair.slice(0, 1).reduce((total, item) => {
       return [...total, ...item];
     }, []);
     const final = addHighcards(cards, best);
 
-    return { final, pairs };
+    return { final, pair };
   }
 
   return false;
 }
 
 function checkTwoPair(cards) {
-  const pairs = groupByRank(cards).filter(
+  const pair = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  if (pairs.length >= 2) {
-    const best = pairs.slice(0, 2).reduce((total, item) => {
+  if (pair.length >= 2) {
+    const best = pair.slice(0, 2).reduce((total, item) => {
       return [...total, ...item];
     }, []);
     const final = addHighcards(cards, best);
 
-    return { final, pairs };
+    return { final, pair };
   }
 
   return false;
@@ -94,6 +96,36 @@ function checkFourOfAKind(cards) {
     const final = addHighcards(cards, best);
 
     return { final, quad };
+  }
+
+  return false;
+}
+
+function checkFullHouse(cards) {
+  const pair = groupByRank(cards).filter(
+    (group) => group.length === PAIR_CONDITION
+  );
+
+  const trio = groupByRank(cards).filter(
+    (group) => group.length === THREE_OF_A_KIND_CONDITION
+  );
+
+  if (trio.length === 1 && pair.length >= 1) {
+    const best = [...trio, ...pair.slice(0, 1)].reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
+
+    return { final, trio, pair };
+  }
+
+  if (trio.length >= 2) {
+    const best = [...trio.slice(0, 2)].reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
+
+    return { final, trio };
   }
 
   return false;
