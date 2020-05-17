@@ -1,5 +1,6 @@
 import { SUITS, RANKS } from "../constants/game";
 import {
+  NUMBER_OF_FINAL_CARDS,
   FLUSH_CONDITION,
   STRAIGHT_CONDITION,
   FOUR_OF_A_KIND_CONDITION,
@@ -8,27 +9,14 @@ import {
 } from "../configs";
 
 export default (final) => {
-  console.log(checkFourOfAKind(final));
+  console.log(checkHighCard(final));
 };
 
-function groupBySuit(cards) {
-  return SUITS.reduce(
-    (total, suit) =>
-      (total = [...total, cards.filter((card) => card.suit === suit)]),
-    []
-  );
-}
+function checkHighCard(cards) {
+  const final = sortByRanks(cards).slice(0, NUMBER_OF_FINAL_CARDS);
+  const highcard = final[0];
 
-function groupByRank(cards) {
-  return RANKS.reduce(
-    (total, rank) =>
-      (total = [...total, cards.filter((card) => card.rank === rank)]),
-    []
-  );
-}
-
-function orderByRanks(cards) {
-  return cards.sort((a, b) => RANKS.indexOf(a.rank) - RANKS.indexOf(b.rank));
+  return { final, highcard };
 }
 
 function checkFourOfAKind(cards) {
@@ -67,4 +55,24 @@ function checkStraight(cards) {
   }
 
   return isStraight;
+}
+
+function groupBySuit(cards) {
+  return SUITS.reduce(
+    (total, suit) =>
+      (total = [...total, cards.filter((card) => card.suit === suit)]),
+    []
+  );
+}
+
+function groupByRank(cards) {
+  return RANKS.reduce(
+    (total, rank) =>
+      (total = [...total, cards.filter((card) => card.rank === rank)]),
+    []
+  );
+}
+
+function sortByRanks(cards) {
+  return cards.sort((a, b) => RANKS.indexOf(a.rank) - RANKS.indexOf(b.rank));
 }

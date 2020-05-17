@@ -5,6 +5,7 @@ export const NUMBER_OF_CARDS_FOR_FLOP = 3;
 export const NUMBER_OF_CARDS_FOR_TURN = 1;
 export const NUMBER_OF_CARDS_FOR_RIVER = 1;
 
+export const NUMBER_OF_FINAL_CARDS = 5;
 export const FLUSH_CONDITION = 5;
 export const STRAIGHT_CONDITION = 5;
 export const PAIR_CONDITION = 2;
