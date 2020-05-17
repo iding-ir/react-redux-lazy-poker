@@ -1,11 +1,11 @@
 import { SUITS, RANKS } from "../constants/game";
 import {
   NUMBER_OF_FINAL_CARDS,
+  PAIR_CONDITION,
+  THREE_OF_A_KIND_CONDITION,
+  FOUR_OF_A_KIND_CONDITION,
   FLUSH_CONDITION,
   STRAIGHT_CONDITION,
-  FOUR_OF_A_KIND_CONDITION,
-  THREE_OF_A_KIND_CONDITION,
-  PAIR_CONDITION,
 } from "../configs";
 
 export default (final) => {
@@ -20,36 +20,54 @@ function checkHighCard(cards) {
 }
 
 function checkOnePair(cards) {
-  const pairs = groupByRank(cards).filter(
+  const matched = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = pairs.reduce((total, item) => {
+  const combined = matched.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (pairs.length === 1) {
+  if (matched.length === 1) {
     const final = addHighcards(cards, combined);
 
-    return { final, pairs };
+    return { final, matched };
   } else {
     return false;
   }
 }
 
 function checkTwoPair(cards) {
-  const pairs = groupByRank(cards).filter(
+  const matched = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = pairs.reduce((total, item) => {
+  const combined = matched.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (pairs.length === 2) {
+  if (matched.length === 2) {
     const final = addHighcards(cards, combined);
 
-    return { final, pairs };
+    return { final, matched };
+  } else {
+    return false;
+  }
+}
+
+function checkThreeOfAKind(cards) {
+  const matched = groupByRank(cards).filter(
+    (group) => group.length === THREE_OF_A_KIND_CONDITION
+  );
+
+  const combined = matched.reduce((total, item) => {
+    return [...total, ...item];
+  }, []);
+
+  if (matched.length >= 1) {
+    const final = addHighcards(cards, combined);
+
+    return { final, matched };
   } else {
     return false;
   }
@@ -58,13 +76,6 @@ function checkTwoPair(cards) {
 function checkFourOfAKind(cards) {
   return groupByRank(cards).reduce(
     (total, group) => total || group.length >= FOUR_OF_A_KIND_CONDITION,
-    false
-  );
-}
-
-function checkThreeOfAKind(cards) {
-  return groupByRank(cards).reduce(
-    (total, group) => total || group.length >= THREE_OF_A_KIND_CONDITION,
     false
   );
 }
