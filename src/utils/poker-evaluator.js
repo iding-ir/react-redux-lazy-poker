@@ -1,8 +1,14 @@
 import { SUITS, RANKS } from "../constants/game";
-import { FLUSH_CONDITION, STRAIGHT_CONDITION } from "../configs";
+import {
+  FLUSH_CONDITION,
+  STRAIGHT_CONDITION,
+  FOUR_OF_A_KIND_CONDITION,
+  THREE_OF_A_KIND_CONDITION,
+  PAIR_CONDITION,
+} from "../configs";
 
 export default (final) => {
-  checkStraight(final);
+  console.log(checkFourOfAKind(final));
 };
 
 function groupBySuit(cards) {
@@ -23,6 +29,13 @@ function groupByRank(cards) {
 
 function orderByRanks(cards) {
   return cards.sort((a, b) => RANKS.indexOf(a.rank) - RANKS.indexOf(b.rank));
+}
+
+function checkFourOfAKind(cards) {
+  return groupByRank(cards).reduce(
+    (total, group) => total || group.length >= FOUR_OF_A_KIND_CONDITION,
+    false
+  );
 }
 
 function checkFlush(cards) {
