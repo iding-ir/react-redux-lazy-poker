@@ -20,75 +20,75 @@ function checkHighCard(cards) {
 }
 
 function checkOnePair(cards) {
-  const matched = groupByRank(cards).filter(
+  const pairs = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = matched.reduce((total, item) => {
+  const combined = pairs.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (matched.length === 1) {
+  if (pairs.length === 1) {
     const final = addHighcards(cards, combined);
 
-    return { final, matched };
-  } else {
-    return false;
+    return { final, pairs };
   }
+
+  return false;
 }
 
 function checkTwoPair(cards) {
-  const matched = groupByRank(cards).filter(
+  const pairs = groupByRank(cards).filter(
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = matched.reduce((total, item) => {
+  const combined = pairs.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (matched.length === 2) {
+  if (pairs.length === 2) {
     const final = addHighcards(cards, combined);
 
-    return { final, matched };
-  } else {
-    return false;
+    return { final, pairs };
   }
+
+  return false;
 }
 
 function checkThreeOfAKind(cards) {
-  const matched = groupByRank(cards).filter(
+  const trio = groupByRank(cards).filter(
     (group) => group.length === THREE_OF_A_KIND_CONDITION
   );
 
-  const combined = matched.reduce((total, item) => {
+  const combined = trio.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (matched.length >= 1) {
+  if (trio.length >= 1) {
     const final = addHighcards(cards, combined);
 
-    return { final, matched };
-  } else {
-    return false;
+    return { final, trio };
   }
+
+  return false;
 }
 
 function checkFourOfAKind(cards) {
-  const matched = groupByRank(cards).filter(
+  const quad = groupByRank(cards).filter(
     (group) => group.length === FOUR_OF_A_KIND_CONDITION
   );
 
-  const combined = matched.reduce((total, item) => {
+  const combined = quad.reduce((total, item) => {
     return [...total, ...item];
   }, []);
 
-  if (matched.length >= 1) {
+  if (quad.length >= 1) {
     const final = addHighcards(cards, combined);
 
-    return { final, matched };
-  } else {
-    return false;
+    return { final, quad };
   }
+
+  return false;
 }
 
 function checkFlush(cards) {
