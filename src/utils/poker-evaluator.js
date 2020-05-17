@@ -36,12 +36,11 @@ function checkOnePair(cards) {
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = pairs.reduce((total, item) => {
-    return [...total, ...item];
-  }, []);
-
-  if (pairs.length === 1) {
-    const final = addHighcards(cards, combined);
+  if (pairs.length >= 1) {
+    const best = pairs.slice(0, 1).reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
 
     return { final, pairs };
   }
@@ -54,12 +53,11 @@ function checkTwoPair(cards) {
     (group) => group.length === PAIR_CONDITION
   );
 
-  const combined = pairs.reduce((total, item) => {
-    return [...total, ...item];
-  }, []);
-
-  if (pairs.length === 2) {
-    const final = addHighcards(cards, combined);
+  if (pairs.length >= 2) {
+    const best = pairs.slice(0, 2).reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
 
     return { final, pairs };
   }
@@ -72,12 +70,11 @@ function checkThreeOfAKind(cards) {
     (group) => group.length === THREE_OF_A_KIND_CONDITION
   );
 
-  const combined = trio.reduce((total, item) => {
-    return [...total, ...item];
-  }, []);
-
   if (trio.length >= 1) {
-    const final = addHighcards(cards, combined);
+    const best = trio.slice(0, 1).reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
 
     return { final, trio };
   }
@@ -90,12 +87,11 @@ function checkFourOfAKind(cards) {
     (group) => group.length === FOUR_OF_A_KIND_CONDITION
   );
 
-  const combined = quad.reduce((total, item) => {
-    return [...total, ...item];
-  }, []);
-
   if (quad.length >= 1) {
-    const final = addHighcards(cards, combined);
+    const best = quad.slice(0, 1).reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
 
     return { final, quad };
   }
@@ -108,12 +104,11 @@ function checkFlush(cards) {
     (group) => group.length === FLUSH_CONDITION
   );
 
-  const combined = flush.reduce((total, item) => {
-    return [...total, ...item];
-  }, []);
-
   if (flush.length >= 1) {
-    const final = addHighcards(cards, combined);
+    const best = flush.slice(0, 1).reduce((total, item) => {
+      return [...total, ...item];
+    }, []);
+    const final = addHighcards(cards, best);
 
     return { final, flush };
   }
