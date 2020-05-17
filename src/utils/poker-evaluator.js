@@ -38,6 +38,13 @@ function checkFourOfAKind(cards) {
   );
 }
 
+function checkThreeOfAKind(cards) {
+  return groupByRank(cards).reduce(
+    (total, group) => total || group.length >= THREE_OF_A_KIND_CONDITION,
+    false
+  );
+}
+
 function checkFlush(cards) {
   return groupBySuit(cards).reduce(
     (total, group) => total || group.length >= FLUSH_CONDITION,
