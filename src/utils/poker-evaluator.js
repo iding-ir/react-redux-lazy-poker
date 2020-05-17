@@ -9,7 +9,7 @@ import {
 } from "../configs";
 
 export default (final) => {
-  console.log(checkHighCard(final));
+  console.log(checkTwoPair(final));
 };
 
 function checkHighCard(cards) {
@@ -17,6 +17,42 @@ function checkHighCard(cards) {
   const highcard = final[0];
 
   return { final, highcard };
+}
+
+function checkOnePair(cards) {
+  const pairs = groupByRank(cards).filter(
+    (group) => group.length === PAIR_CONDITION
+  );
+
+  const combined = pairs.reduce((total, item) => {
+    return [...total, ...item];
+  }, []);
+
+  if (pairs.length === 1) {
+    const final = addHighcards(cards, combined);
+
+    return { final, pairs };
+  } else {
+    return false;
+  }
+}
+
+function checkTwoPair(cards) {
+  const pairs = groupByRank(cards).filter(
+    (group) => group.length === PAIR_CONDITION
+  );
+
+  const combined = pairs.reduce((total, item) => {
+    return [...total, ...item];
+  }, []);
+
+  if (pairs.length === 2) {
+    const final = addHighcards(cards, combined);
+
+    return { final, pairs };
+  } else {
+    return false;
+  }
 }
 
 function checkFourOfAKind(cards) {
@@ -75,4 +111,17 @@ function groupByRank(cards) {
 
 function sortByRanks(cards) {
   return cards.sort((a, b) => RANKS.indexOf(a.rank) - RANKS.indexOf(b.rank));
+}
+
+function addHighcards(from, to) {
+  const combined = [...to, ...sortByRanks(from)];
+  const stringified = combined.map((item) => JSON.stringify(item));
+  const unique = stringified.filter(
+    (card, index) => stringified.indexOf(card) === index
+  );
+  const cards = unique
+    .map((item) => JSON.parse(item))
+    .slice(0, NUMBER_OF_FINAL_CARDS);
+
+  return cards;
 }
