@@ -74,10 +74,21 @@ function checkThreeOfAKind(cards) {
 }
 
 function checkFourOfAKind(cards) {
-  return groupByRank(cards).reduce(
-    (total, group) => total || group.length >= FOUR_OF_A_KIND_CONDITION,
-    false
+  const matched = groupByRank(cards).filter(
+    (group) => group.length === FOUR_OF_A_KIND_CONDITION
   );
+
+  const combined = matched.reduce((total, item) => {
+    return [...total, ...item];
+  }, []);
+
+  if (matched.length >= 1) {
+    const final = addHighcards(cards, combined);
+
+    return { final, matched };
+  } else {
+    return false;
+  }
 }
 
 function checkFlush(cards) {
