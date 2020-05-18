@@ -6,8 +6,6 @@ import M from "materialize-css";
 import pokersolver from "pokersolver";
 
 import "./app.css";
-import Navbar from "./navbar";
-import Players from "./players";
 import {
   addPlayer,
   removePlayer,
@@ -25,6 +23,14 @@ import {
   highlight,
 } from "../actions/cards";
 import { addLog, resetLogs } from "../actions/logs";
+import {
+  STAGE_NEW_ROUND,
+  STAGE_PREFLOP,
+  STAGE_FLOP,
+  STAGE_TURN,
+  STAGE_RIVER,
+  STAGE_RESULT,
+} from "../constants";
 import { STAGES } from "../constants/game";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
@@ -37,13 +43,15 @@ import {
   HANDPOINTS,
 } from "../configs";
 import { repeat } from "../utils/repeat";
+import Navbar from "./navbar";
+import Players from "./players";
 import Ranking from "./ranking";
 import Deck from "./deck";
 import Controls from "./controls";
 
 class App extends Component {
   componentDidMount() {
-    this.resetGame();
+    this.restartGame();
   }
 
   componentDidUpdate() {
@@ -77,7 +85,7 @@ class App extends Component {
             logs={logs}
             onDeal={this.onDeal}
             onAutoplay={toggleAutoplay}
-            onRestart={this.resetGame}
+            onRestart={this.restartGame}
           />
         </div>
 
@@ -116,8 +124,10 @@ class App extends Component {
       dealTable,
     } = this.props;
 
-    switch (game.stage.slug) {
-      case "new-round":
+    const { slug } = game.stage;
+
+    switch (slug) {
+      case STAGE_NEW_ROUND:
         startGame();
 
         Object.values(players).forEach((player) => {
@@ -127,25 +137,25 @@ class App extends Component {
         });
 
         break;
-      case "preflop":
+      case STAGE_PREFLOP:
         repeat(NUMBER_OF_CARDS_FOR_FLOP, dealTable);
 
         break;
-      case "flop":
+      case STAGE_FLOP:
         repeat(NUMBER_OF_CARDS_FOR_TURN, dealTable);
 
         break;
-      case "turn":
+      case STAGE_TURN:
         repeat(NUMBER_OF_CARDS_FOR_RIVER, dealTable);
 
         break;
-      case "river":
+      case STAGE_RIVER:
         endGame();
 
         this.calculate();
 
         break;
-      case "result":
+      case STAGE_RESULT:
         refreshDealer();
 
         break;
@@ -196,7 +206,7 @@ class App extends Component {
     });
   };
 
-  resetGame = () => {
+  restartGame = () => {
     const {
       addPlayer,
       setStage,

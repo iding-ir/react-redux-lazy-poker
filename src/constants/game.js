@@ -1,3 +1,12 @@
+import {
+  STAGE_NEW_ROUND,
+  STAGE_PREFLOP,
+  STAGE_FLOP,
+  STAGE_TURN,
+  STAGE_RIVER,
+  STAGE_RESULT,
+} from "./index";
+
 export const RANKS = [
   { value: "A", display: "A" },
   { value: "K", display: "K" },
@@ -18,37 +27,37 @@ export const SUITS = ["c", "s", "h", "d"];
 
 export const STAGES = [
   {
-    slug: "new-round",
+    slug: STAGE_NEW_ROUND,
     title: "New Round",
     button: "Deal Preflop",
     icon: "filter_2",
   },
   {
-    slug: "preflop",
+    slug: STAGE_PREFLOP,
     title: "Preflop",
     button: "Deal Flop",
     icon: "filter_3",
   },
   {
-    slug: "flop",
+    slug: STAGE_FLOP,
     title: "Flop",
     button: "Deal Turn",
     icon: "filter_1",
   },
   {
-    slug: "turn",
+    slug: STAGE_TURN,
     title: "Turn",
     button: "Deal River",
     icon: "filter_1",
   },
   {
-    slug: "river",
+    slug: STAGE_RIVER,
     title: "River",
     button: "See Result",
     icon: "flare",
   },
   {
-    slug: "result",
+    slug: STAGE_RESULT,
     title: "Result",
     button: "New Round",
     icon: "refresh",

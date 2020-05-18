@@ -1,3 +1,10 @@
+export const STAGE_NEW_ROUND = "STAGE_NEW_ROUND";
+export const STAGE_PREFLOP = "STAGE_PREFLOP";
+export const STAGE_FLOP = "STAGE_FLOP";
+export const STAGE_TURN = "STAGE_TURN";
+export const STAGE_RIVER = "STAGE_RIVER";
+export const STAGE_RESULT = "STAGE_RESULT";
+
 export const ADD_PLAYER = "ADD_PLAYER";
 export const REMOVE_PLAYER = "REMOVE_PLAYER";
 export const REMOVE_PLAYERS = "REMOVE_PLAYERS";
