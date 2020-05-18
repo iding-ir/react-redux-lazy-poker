@@ -20,7 +20,7 @@ const Player = (props) => {
             onClick={() => {
               removePlayer(id);
             }}
-            disabled={players.length <= MINIMUM_NUMBER_OF_PLAYERS}
+            disabled={Object.keys(players).length <= MINIMUM_NUMBER_OF_PLAYERS}
           >
             <i className="material-icons">remove_circle_outline</i>
           </button>
