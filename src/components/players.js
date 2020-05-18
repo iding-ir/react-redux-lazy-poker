@@ -2,6 +2,7 @@ import React from "react";
 
 import "./players.css";
 import Player from "./player";
+import { MAXIMUM_NUMBER_OF_PLAYERS } from "../configs";
 
 const Players = (props) => {
   const {
@@ -35,7 +36,10 @@ const Players = (props) => {
           id="players-add"
           className="waves-effect waves-light btn-large btn-floating pink"
           onClick={addPlayer}
-          disabled={gameStarted}
+          disabled={
+            gameStarted ||
+            Object.keys(players).length >= MAXIMUM_NUMBER_OF_PLAYERS
+          }
         >
           <i className="material-icons left">add</i>
         </button>
