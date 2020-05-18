@@ -17,7 +17,7 @@ import {
   givePoints,
 } from "../actions/players";
 import { moveStage, setStage, startGame, endGame } from "../actions/game";
-import { toggleAutoplay } from "../actions/autoplay";
+import { toggleAutoplay, turnAutoplayOff } from "../actions/autoplay";
 import {
   refreshDealer,
   dealPlayer,
@@ -203,6 +203,7 @@ class App extends Component {
       removePlayers,
       refreshDealer,
       resetLogs,
+      turnAutoplayOff,
     } = this.props;
 
     refreshDealer();
@@ -212,6 +213,8 @@ class App extends Component {
     resetLogs();
 
     removePlayers();
+
+    turnAutoplayOff();
 
     repeat(NUMBER_OF_DEFAULT_PLAYERS, addPlayer);
   };
@@ -250,6 +253,7 @@ const mapDispatchToProps = (dispatch) =>
       startGame,
       endGame,
       toggleAutoplay,
+      turnAutoplayOff,
       refreshDealer,
       dealPlayer,
       dealTable,
