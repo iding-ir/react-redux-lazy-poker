@@ -13,6 +13,7 @@ import {
   removePlayer,
   changeName,
   checkName,
+  givePoints,
 } from "../actions/players";
 import { moveStage, startGame, endGame } from "../actions/game";
 import { toggleAutoplay } from "../actions/autoplay";
@@ -29,6 +30,7 @@ import {
   NUMBER_OF_CARDS_FOR_TURN,
   NUMBER_OF_CARDS_FOR_RIVER,
   AUTOPLAY_DELAY_MS,
+  HANDPOINTS,
 } from "../configs";
 import { repeat } from "../utils/repeat";
 import Ranking from "./ranking";
@@ -161,7 +163,7 @@ class App extends Component {
   };
 
   calculate = () => {
-    const { players, cards, highlight } = this.props;
+    const { players, cards, highlight, givePoints } = this.props;
     const Hand = pokersolver.Hand;
     const hands = [];
 
@@ -171,11 +173,18 @@ class App extends Component {
       );
 
       hands[index] = Hand.solve(final);
+      hands[index].id = player.id;
     });
 
     const winners = Hand.winners(hands);
 
     winners.forEach((winner) => {
+      const points = HANDPOINTS.filter(
+        (handpoint) => handpoint.hand === winner.name
+      )[0].points;
+
+      givePoints(winner.id, points);
+
       winner.cards.forEach((card) => {
         highlight(card);
       });
@@ -206,6 +215,7 @@ const mapDispatchToProps = (dispatch) =>
       dealPlayer,
       dealTable,
       highlight,
+      givePoints,
     },
     dispatch
   );

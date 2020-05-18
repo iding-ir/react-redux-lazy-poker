@@ -3,6 +3,7 @@ import {
   REMOVE_PLAYER,
   CHANGE_NAME,
   CHECK_NAME,
+  GIVE_POINTS,
 } from "../constants";
 import { RANDOM_PLAYER_NAMES } from "../configs";
 
@@ -36,6 +37,14 @@ const reducer = (state = INITIAL_STATE, action) => {
           const random = Math.floor(Math.random() * RANDOM_PLAYER_NAMES.length);
 
           player.name = RANDOM_PLAYER_NAMES[random];
+        }
+
+        return player;
+      });
+    case GIVE_POINTS:
+      return state.map((player) => {
+        if (player.id === action.payload.id) {
+          player.points += action.payload.points;
         }
 
         return player;

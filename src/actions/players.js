@@ -3,6 +3,7 @@ import {
   REMOVE_PLAYER,
   CHANGE_NAME,
   CHECK_NAME,
+  GIVE_POINTS,
 } from "../constants";
 
 export const addPlayer = () => {
@@ -29,5 +30,12 @@ export const checkName = (id, name) => {
   return {
     type: CHECK_NAME,
     payload: { id, name },
+  };
+};
+
+export const givePoints = (id, points) => {
+  return {
+    type: GIVE_POINTS,
+    payload: { id, points },
   };
 };
