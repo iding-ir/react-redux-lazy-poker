@@ -1,6 +1,7 @@
 #toast-container {
   top: auto;
-  right: 5%;
+  left: 5%;
+  right: auto;
   bottom: 5%;
   z-index: 1001;
   min-width: 36rem;

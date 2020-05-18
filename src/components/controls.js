@@ -111,7 +111,7 @@ class Controls extends Component {
                   <li className="collection-item logs-item" key={index}>
                     <i className="material-icons left blue-text">{log.icon}</i>
 
-                    <div dangerouslySetInnerHTML={{ __html: log.text }}></div>
+                    <div>{log.text}</div>
                   </li>
                 ))}
               </ul>

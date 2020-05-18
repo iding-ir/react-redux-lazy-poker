@@ -31,6 +31,7 @@ import {
   NUMBER_OF_CARDS_FOR_TURN,
   NUMBER_OF_CARDS_FOR_RIVER,
   AUTOPLAY_DELAY_MS,
+  TOAST_DURATION,
   HANDPOINTS,
 } from "../configs";
 import { repeat } from "../utils/repeat";
@@ -189,9 +190,16 @@ class App extends Component {
 
       givePoints(winner.id, points);
 
-      const log = "";
+      const text = `${players[winner.id].name} won with ${
+        winner.descr
+      }. +${points} points`;
 
-      addLog(log);
+      M.toast({ html: text, displayLength: TOAST_DURATION });
+
+      addLog({
+        text,
+        icon: "insert_comment",
+      });
 
       winner.cards.forEach((card) => {
         highlight(card);
