@@ -171,13 +171,9 @@ class App extends Component {
       );
 
       hands[index] = Hand.solve(final);
-
-      console.log(hands[index]);
     });
 
     const winners = Hand.winners(hands);
-
-    console.log(winners);
 
     winners.forEach((winner) => {
       winner.cards.forEach((card) => {

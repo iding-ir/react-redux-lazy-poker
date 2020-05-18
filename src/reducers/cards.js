@@ -48,7 +48,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       const table = state.table.map((card) => {
         card.highlight =
           (card.suit === action.payload.suit &&
-            card.rank.value === action.payload.rank.value) ||
+            card.rank.value === action.payload.value) ||
           card.highlight;
 
         return card;
@@ -60,7 +60,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         player.forEach((card) => {
           card.highlight =
             (card.suit === action.payload.suit &&
-              card.rank.value === action.payload.rank.value) ||
+              card.rank.value === action.payload.value) ||
             card.highlight;
         });
       });
