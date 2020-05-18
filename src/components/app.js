@@ -167,13 +167,16 @@ class App extends Component {
 
     Object.values(players).forEach((player, index) => {
       const final = [...cards.table, ...cards.players[player.id]].map(
-        (card) => card.value + card.suit
+        (card) => card.rank.value + card.suit
       );
 
       hands[index] = Hand.solve(final);
+
+      console.log(hands[index]);
     });
 
     const winners = Hand.winners(hands);
+
     console.log(winners);
 
     winners.forEach((winner) => {

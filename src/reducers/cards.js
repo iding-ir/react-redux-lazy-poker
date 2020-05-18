@@ -27,7 +27,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dealer: state.dealer.filter(
-          (card) => card.value !== picked.value || card.suit !== picked.suit
+          (card) =>
+            card.rank.value !== picked.rank.value || card.suit !== picked.suit
         ),
         players: {
           ...state.players,
@@ -38,7 +39,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dealer: state.dealer.filter(
-          (card) => card.value !== picked.value || card.suit !== picked.suit
+          (card) =>
+            card.rank.value !== picked.rank.value || card.suit !== picked.suit
         ),
         table: [...state.table, picked],
       };
@@ -46,8 +48,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       const table = state.table.map((card) => {
         card.highlight =
           (card.suit === action.payload.suit &&
-            card.value === action.payload.value) ||
-          (card.value === "10" && action.payload.value === "1") ||
+            card.rank.value === action.payload.rank.value) ||
           card.highlight;
 
         return card;
@@ -59,8 +60,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         player.forEach((card) => {
           card.highlight =
             (card.suit === action.payload.suit &&
-              card.value === action.payload.value) ||
-            (card.value === "10" && action.payload.value === "1") ||
+              card.rank.value === action.payload.rank.value) ||
             card.highlight;
         });
       });

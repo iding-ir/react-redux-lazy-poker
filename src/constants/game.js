@@ -1,17 +1,17 @@
-export const VALUES = [
-  "A",
-  "K",
-  "Q",
-  "J",
-  "10",
-  "9",
-  "8",
-  "7",
-  "6",
-  "5",
-  "4",
-  "3",
-  "2",
+export const RANKS = [
+  { value: "A", display: "A" },
+  { value: "K", display: "K" },
+  { value: "Q", display: "Q" },
+  { value: "J", display: "J" },
+  { value: "T", display: "10" },
+  { value: "9", display: "9" },
+  { value: "8", display: "8" },
+  { value: "7", display: "7" },
+  { value: "6", display: "6" },
+  { value: "5", display: "5" },
+  { value: "4", display: "4" },
+  { value: "3", display: "3" },
+  { value: "2", display: "2" },
 ];
 
 export const SUITS = ["c", "s", "h", "d"];

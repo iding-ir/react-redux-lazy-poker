@@ -1,11 +1,11 @@
-import { VALUES, SUITS } from "../constants/game";
+import { RANKS, SUITS } from "../constants/game";
 
 export default () => {
   let all = [];
 
   SUITS.forEach((suit) => {
-    VALUES.forEach((value) => {
-      all = [...all, { suit, value, highlight: false }];
+    RANKS.forEach((rank) => {
+      all = [...all, { suit, rank, highlight: false }];
     });
   });
 

@@ -4,7 +4,7 @@ import * as classnames from "classnames";
 import "./card.css";
 
 const Card = (props) => {
-  const { value, suit, highlight } = props.card;
+  const { rank, suit, highlight } = props.card;
   const cardIcon = `cards-icon-${suit}`;
   const cardClasses = classnames("cards-card", {
     "cards-visible": props.card.suit !== "",
@@ -13,11 +13,11 @@ const Card = (props) => {
   return (
     <React.Fragment>
       <div className={cardClasses} data-highlight={highlight}>
-        <div>{value}</div>
+        <div>{rank.display}</div>
 
         <div className={cardIcon}></div>
 
-        <div>{value}</div>
+        <div>{rank.display}</div>
 
         <div className="cards-back">
           <img src="/assets/images/card.png" alt="" />
