@@ -17,7 +17,7 @@ class Controls extends Component {
   }
 
   render() {
-    const { stage, autoplay, onDeal, onAutoplay } = this.props;
+    const { stage, autoplay, onDeal, onAutoplay, logs } = this.props;
     const { icon, button } = stage;
     const autoplayIcon = autoplay ? "pause" : "play_arrow";
 
@@ -71,6 +71,53 @@ class Controls extends Component {
                 Restart
               </button>
 
+              <button className="modal-close waves-effect btn-flat">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="controls-logs">
+          <button
+            id="controls-logs"
+            className="waves-effect btn-large blue"
+            onClick={() => {
+              let element = document.querySelector("#logs-modal");
+
+              M.Modal.getInstance(element).open();
+            }}
+            disabled={!logs.length}
+          >
+            <i className="material-icons">filter_none</i>
+          </button>
+
+          <span
+            className="logs-counter badge new pink"
+            data-badge-caption=""
+            style={{ display: !logs.length ? "none" : "block" }}
+          >
+            {logs.length}
+          </span>
+
+          <div id="logs-modal" className="modal">
+            <div className="modal-header">
+              <h5>Logs</h5>
+            </div>
+
+            <div className="modal-content">
+              <ul className="collection">
+                {logs.map((log, index) => (
+                  <li className="collection-item logs-item" key={index}>
+                    <i className="material-icons left blue-text">{log.icon}</i>
+
+                    <div dangerouslySetInnerHTML={{ __html: log.text }}></div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="modal-footer">
               <button className="modal-close waves-effect btn-flat">
                 Close
               </button>

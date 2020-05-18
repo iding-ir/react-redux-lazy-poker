@@ -23,6 +23,7 @@ import {
   dealTable,
   highlight,
 } from "../actions/cards";
+import { addLog, resetLogs } from "../actions/logs";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
@@ -61,6 +62,7 @@ class App extends Component {
   render() {
     const {
       cards,
+      logs,
       players,
       gameStarted,
       stage,
@@ -70,6 +72,7 @@ class App extends Component {
       changeName,
       checkName,
       toggleAutoplay,
+      resetLogs,
     } = this.props;
 
     return (
@@ -82,6 +85,7 @@ class App extends Component {
           <Controls
             stage={stage}
             autoplay={autoplay}
+            logs={logs}
             onDeal={this.onDeal}
             onAutoplay={toggleAutoplay}
           />
@@ -163,7 +167,7 @@ class App extends Component {
   };
 
   calculate = () => {
-    const { players, cards, highlight, givePoints } = this.props;
+    const { players, cards, highlight, givePoints, addLog } = this.props;
     const Hand = pokersolver.Hand;
     const hands = [];
 
@@ -185,6 +189,10 @@ class App extends Component {
 
       givePoints(winner.id, points);
 
+      const log = "";
+
+      addLog(log);
+
       winner.cards.forEach((card) => {
         highlight(card);
       });
@@ -198,6 +206,7 @@ const mapStateToProps = (state) => ({
   gameStarted: state.game.started,
   autoplay: state.autoplay,
   cards: state.cards,
+  logs: state.logs,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -216,6 +225,8 @@ const mapDispatchToProps = (dispatch) =>
       dealTable,
       highlight,
       givePoints,
+      addLog,
+      resetLogs,
     },
     dispatch
   );
