@@ -3,6 +3,7 @@ import _ from "lodash";
 import {
   ADD_PLAYER,
   REMOVE_PLAYER,
+  REMOVE_PLAYERS,
   CHANGE_NAME,
   CHECK_NAME,
   GIVE_POINTS,
@@ -27,6 +28,8 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case REMOVE_PLAYER:
       return _.omit(state, action.payload);
+    case REMOVE_PLAYERS:
+      return {};
     case CHANGE_NAME:
       return {
         ...state,

@@ -1,6 +1,7 @@
 import {
   ADD_PLAYER,
   REMOVE_PLAYER,
+  REMOVE_PLAYERS,
   CHANGE_NAME,
   CHECK_NAME,
   GIVE_POINTS,
@@ -16,6 +17,12 @@ export const removePlayer = (id) => {
   return {
     type: REMOVE_PLAYER,
     payload: id,
+  };
+};
+
+export const removePlayers = () => {
+  return {
+    type: REMOVE_PLAYERS,
   };
 };
 

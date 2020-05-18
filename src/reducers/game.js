@@ -1,4 +1,4 @@
-import { MOVE_STAGE, START_GAME, END_GAME } from "../constants";
+import { MOVE_STAGE, SET_STAGE, START_GAME, END_GAME } from "../constants";
 import { STAGES } from "../constants/game";
 
 const INITIAL_STATE = {
@@ -13,6 +13,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       const nextIndex = index + 1 >= STAGES.length ? 0 : index + 1;
 
       return { ...state, stage: STAGES[nextIndex] };
+    case SET_STAGE:
+      return { ...state, stage: action.payload };
     case START_GAME:
       return { ...state, started: true };
     case END_GAME:

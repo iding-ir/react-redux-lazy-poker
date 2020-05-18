@@ -1,8 +1,15 @@
-import { MOVE_STAGE, START_GAME, END_GAME } from "../constants";
+import { MOVE_STAGE, SET_STAGE, START_GAME, END_GAME } from "../constants";
 
 export const moveStage = () => {
   return {
     type: MOVE_STAGE,
+  };
+};
+
+export const setStage = (stage) => {
+  return {
+    type: SET_STAGE,
+    payload: stage,
   };
 };
 

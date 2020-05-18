@@ -11,11 +11,12 @@ import Players from "./players";
 import {
   addPlayer,
   removePlayer,
+  removePlayers,
   changeName,
   checkName,
   givePoints,
 } from "../actions/players";
-import { moveStage, startGame, endGame } from "../actions/game";
+import { moveStage, setStage, startGame, endGame } from "../actions/game";
 import { toggleAutoplay } from "../actions/autoplay";
 import {
   refreshDealer,
@@ -24,6 +25,7 @@ import {
   highlight,
 } from "../actions/cards";
 import { addLog, resetLogs } from "../actions/logs";
+import { STAGES } from "../constants/game";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
@@ -41,23 +43,11 @@ import Controls from "./controls";
 
 class App extends Component {
   componentDidMount() {
-    const { addPlayer, refreshDealer } = this.props;
-
-    refreshDealer();
-
-    repeat(NUMBER_OF_DEFAULT_PLAYERS, addPlayer);
+    this.resetGame();
   }
 
   componentDidUpdate() {
-    const { autoplay } = this.props;
-
-    if (autoplay) {
-      clearInterval(this.interval);
-
-      this.interval = setTimeout(() => {
-        this.onDeal();
-      }, AUTOPLAY_DELAY_MS);
-    }
+    this.listenToAutoplay();
   }
 
   render() {
@@ -72,7 +62,6 @@ class App extends Component {
       changeName,
       checkName,
       toggleAutoplay,
-      resetLogs,
     } = this.props;
 
     return (
@@ -88,6 +77,7 @@ class App extends Component {
             logs={logs}
             onDeal={this.onDeal}
             onAutoplay={toggleAutoplay}
+            onRestart={this.resetGame}
           />
         </div>
 
@@ -205,6 +195,38 @@ class App extends Component {
       });
     });
   };
+
+  resetGame = () => {
+    const {
+      addPlayer,
+      setStage,
+      removePlayers,
+      refreshDealer,
+      resetLogs,
+    } = this.props;
+
+    refreshDealer();
+
+    setStage(STAGES[0]);
+
+    resetLogs();
+
+    removePlayers();
+
+    repeat(NUMBER_OF_DEFAULT_PLAYERS, addPlayer);
+  };
+
+  listenToAutoplay = () => {
+    const { autoplay } = this.props;
+
+    if (autoplay) {
+      clearInterval(this.interval);
+
+      this.interval = setTimeout(() => {
+        this.onDeal();
+      }, AUTOPLAY_DELAY_MS);
+    }
+  };
 }
 
 const mapStateToProps = (state) => ({
@@ -220,9 +242,11 @@ const mapDispatchToProps = (dispatch) =>
     {
       addPlayer,
       removePlayer,
+      removePlayers,
       changeName,
       checkName,
       moveStage,
+      setStage,
       startGame,
       endGame,
       toggleAutoplay,

@@ -17,7 +17,7 @@ class Controls extends Component {
   }
 
   render() {
-    const { stage, autoplay, onDeal, onAutoplay, logs } = this.props;
+    const { stage, autoplay, onDeal, onAutoplay, onRestart, logs } = this.props;
     const { icon, button } = stage;
     const autoplayIcon = autoplay ? "pause" : "play_arrow";
 
@@ -67,7 +67,10 @@ class Controls extends Component {
             </div>
 
             <div className="modal-footer">
-              <button className="modal-close waves-effect btn-flat">
+              <button
+                className="modal-close waves-effect btn-flat"
+                onClick={onRestart}
+              >
                 Restart
               </button>
 

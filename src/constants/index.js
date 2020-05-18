@@ -1,10 +1,12 @@
 export const ADD_PLAYER = "ADD_PLAYER";
 export const REMOVE_PLAYER = "REMOVE_PLAYER";
+export const REMOVE_PLAYERS = "REMOVE_PLAYERS";
 export const CHANGE_NAME = "CHANGE_NAME";
 export const CHECK_NAME = "CHECK_NAME";
 export const GIVE_POINTS = "GIVE_POINTS";
 
 export const MOVE_STAGE = "MOVE_STAGE";
+export const SET_STAGE = "SET_STAGE";
 export const START_GAME = "START_GAME";
 export const END_GAME = "END_GAME";
 
