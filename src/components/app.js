@@ -65,8 +65,7 @@ class App extends Component {
       cards,
       logs,
       players,
-      gameStarted,
-      stage,
+      game,
       autoplay,
       addPlayer,
       removePlayer,
@@ -84,7 +83,7 @@ class App extends Component {
 
         <div className="app-controls">
           <Controls
-            stage={stage}
+            stage={game.stage}
             autoplay={autoplay}
             logs={logs}
             onDeal={this.onDeal}
@@ -104,7 +103,7 @@ class App extends Component {
           <Players
             cards={cards}
             players={players}
-            gameStarted={gameStarted}
+            gameStarted={game.started}
             addPlayer={addPlayer}
             removePlayer={removePlayer}
             changeName={changeName}
@@ -118,7 +117,7 @@ class App extends Component {
   onDeal = () => {
     const {
       players,
-      stage,
+      game,
       moveStage,
       startGame,
       endGame,
@@ -127,7 +126,7 @@ class App extends Component {
       dealTable,
     } = this.props;
 
-    switch (stage.slug) {
+    switch (game.stage.slug) {
       case "new-round":
         startGame();
 
@@ -210,8 +209,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   players: state.players,
-  stage: state.game.stage,
-  gameStarted: state.game.started,
+  game: state.game,
   autoplay: state.autoplay,
   cards: state.cards,
   logs: state.logs,
