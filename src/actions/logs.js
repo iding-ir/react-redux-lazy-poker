@@ -1,4 +1,4 @@
-import { ADD_LOG, RESET_LOGS } from "../constants";
+import { ADD_LOG, CLEAR_LOGS } from "../constants";
 
 export const addLog = (log) => {
   return {
@@ -7,8 +7,8 @@ export const addLog = (log) => {
   };
 };
 
-export const resetLogs = () => {
+export const clearLogs = () => {
   return {
-    type: RESET_LOGS,
+    type: CLEAR_LOGS,
   };
 };

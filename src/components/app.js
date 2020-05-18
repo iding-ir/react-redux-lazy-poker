@@ -22,7 +22,7 @@ import {
   dealTable,
   highlight,
 } from "../actions/cards";
-import { addLog, resetLogs } from "../actions/logs";
+import { addLog, clearLogs } from "../actions/logs";
 import {
   STAGE_NEW_ROUND,
   STAGE_PREFLOP,
@@ -150,12 +150,12 @@ class App extends Component {
 
         break;
       case STAGE_RIVER:
-        endGame();
-
         this.calculate();
 
         break;
       case STAGE_RESULT:
+        endGame();
+
         refreshDealer();
 
         break;
@@ -212,15 +212,15 @@ class App extends Component {
       setStage,
       removePlayers,
       refreshDealer,
-      resetLogs,
+      clearLogs,
       turnAutoplayOff,
     } = this.props;
 
     refreshDealer();
 
-    setStage(STAGES[0]);
+    setStage(STAGE_NEW_ROUND);
 
-    resetLogs();
+    clearLogs();
 
     removePlayers();
 
@@ -270,7 +270,7 @@ const mapDispatchToProps = (dispatch) =>
       highlight,
       givePoints,
       addLog,
-      resetLogs,
+      clearLogs,
     },
     dispatch
   );

@@ -28,4 +28,4 @@ export const DEAL_TABLE = "DEAL_TABLE";
 export const HIGHLIGHT = "HIGHLIGHT";
 
 export const ADD_LOG = "ADD_LOG";
-export const RESET_LOGS = "RESET_LOGS";
+export const CLEAR_LOGS = "CLEAR_LOGS";

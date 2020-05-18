@@ -14,7 +14,9 @@ const reducer = (state = INITIAL_STATE, action) => {
 
       return { ...state, stage: STAGES[nextIndex] };
     case SET_STAGE:
-      return { ...state, stage: action.payload };
+      const stage = STAGES.filter((stage) => stage.slug === action.payload)[0];
+
+      return { ...state, stage };
     case START_GAME:
       return { ...state, started: true };
     case END_GAME:

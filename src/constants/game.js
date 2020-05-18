@@ -65,7 +65,10 @@ export const STAGES = [
 ];
 
 export const defaultCard = {
-  rank: "",
+  rank: {
+    value: "",
+    display: "",
+  },
   suit: "",
   highlight: false,
 };

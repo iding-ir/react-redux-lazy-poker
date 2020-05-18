@@ -12,10 +12,10 @@ export const TOAST_DURATION = 4000;
 export const RANDOM_PLAYER_NAMES = ["Koshka", "Gulbi", "Remuss"];
 
 export const HANDPOINTS = [
-  { hand: "High Card", points: 0 },
-  { hand: "Pair", points: 1 },
-  { hand: "Two Pair", points: 2 },
-  { hand: "Three of a Kind", points: 3 },
+  { hand: "High Card", points: 1 },
+  { hand: "Pair", points: 2 },
+  { hand: "Two Pair", points: 3 },
+  { hand: "Three of a Kind", points: 4 },
   { hand: "Straight", points: 5 },
   { hand: "Flush", points: 6 },
   { hand: "Full House", points: 7 },
