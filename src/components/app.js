@@ -31,7 +31,6 @@ import {
   STAGE_RIVER,
   STAGE_RESULT,
 } from "../constants";
-import { STAGES } from "../constants/game";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
