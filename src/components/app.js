@@ -51,7 +51,7 @@ import Controls from "./controls";
 
 class App extends Component {
   componentDidMount() {
-    this.restartGame();
+    this.restart();
   }
 
   componentDidUpdate() {
@@ -83,9 +83,9 @@ class App extends Component {
             stage={game.stage}
             autoplay={autoplay}
             logs={logs}
-            onDeal={this.onDeal}
-            onAutoplay={toggleAutoplay}
-            onRestart={this.restartGame}
+            deal={this.deal}
+            toggleAutoplay={toggleAutoplay}
+            restart={this.restart}
           />
         </div>
 
@@ -112,7 +112,7 @@ class App extends Component {
     );
   }
 
-  onDeal = () => {
+  deal = () => {
     const {
       players,
       game,
@@ -206,7 +206,7 @@ class App extends Component {
     });
   };
 
-  restartGame = () => {
+  restart = () => {
     const {
       addPlayer,
       setStage,
@@ -236,7 +236,7 @@ class App extends Component {
       clearInterval(this.interval);
 
       this.interval = setTimeout(() => {
-        this.onDeal();
+        this.deal();
       }, AUTOPLAY_DELAY_MS);
     }
   };
