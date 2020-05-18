@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   ADD_PLAYER,
   REMOVE_PLAYER,
@@ -24,7 +26,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
 
     case REMOVE_PLAYER:
-      return state.filter((player) => player.id !== action.payload);
+      return _.omit(state, action.payload);
     case CHANGE_NAME:
       return {
         ...state,
