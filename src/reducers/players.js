@@ -7,48 +7,50 @@ import {
 } from "../constants";
 import { RANDOM_PLAYER_NAMES } from "../configs";
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {};
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_PLAYER:
-      return [
+      const id = Math.ceil(Math.random() * 9999999);
+
+      return {
         ...state,
-        {
+        [id]: {
           name: "Player",
-          id: Math.ceil(Math.random() * 9999999),
+          id: id,
           points: 0,
         },
-      ];
+      };
 
     case REMOVE_PLAYER:
       return state.filter((player) => player.id !== action.payload);
     case CHANGE_NAME:
-      return state.map((player) => {
-        if (player.id === action.payload.id) {
-          player.name = action.payload.name;
-        }
-
-        return player;
-      });
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          name: action.payload.name,
+        },
+      };
     case CHECK_NAME:
-      return state.map((player) => {
-        if (player.id === action.payload.id && action.payload.name === "") {
-          const random = Math.floor(Math.random() * RANDOM_PLAYER_NAMES.length);
+      const random = Math.floor(Math.random() * RANDOM_PLAYER_NAMES.length);
 
-          player.name = RANDOM_PLAYER_NAMES[random];
-        }
-
-        return player;
-      });
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          name: action.payload.name || RANDOM_PLAYER_NAMES[random],
+        },
+      };
     case GIVE_POINTS:
-      return state.map((player) => {
-        if (player.id === action.payload.id) {
-          player.points += action.payload.points;
-        }
-
-        return player;
-      });
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          points: state[action.payload.id].points + action.payload.points,
+        },
+      };
     default:
       return state;
   }

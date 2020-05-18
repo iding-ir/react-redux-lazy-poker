@@ -5,7 +5,7 @@ import "./ranking.css";
 class Ranking extends Component {
   state = {};
   render() {
-    let players = [...this.props.players];
+    const { players } = this.props;
 
     return (
       <table className="ranking-table">
@@ -17,16 +17,18 @@ class Ranking extends Component {
         </thead>
 
         <tbody>
-          {players
+          {Object.values(players)
             .sort((a, b) => {
               return b.points - a.points;
             })
             .slice(0, 3)
-            .map((player, index) => {
+            .map((player) => {
+              const { id, name, points } = player;
+
               return (
-                <tr key={index}>
-                  <td>{player.name}</td>
-                  <td>{player.points}</td>
+                <tr key={id}>
+                  <td>{name}</td>
+                  <td>{points}</td>
                 </tr>
               );
             })}

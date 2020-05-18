@@ -17,7 +17,7 @@ const Players = (props) => {
   return (
     <div className="players">
       <div className="players-container">
-        {players.map((player, key) => (
+        {Object.values(players).map((player, key) => (
           <Player
             key={key}
             hand={cards.players[player.id]}
