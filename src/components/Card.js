@@ -1,7 +1,7 @@
 import React from "react";
 import * as classnames from "classnames";
 
-import "./card.css";
+import "./Card.css";
 
 const Card = (props) => {
   const { rank, suit, highlight } = props.card;

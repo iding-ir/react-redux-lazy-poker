@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./card";
+import Card from "./Card";
 import { defaultCard } from "../constants/game";
 import {
   MINIMUM_NUMBER_OF_PLAYERS,

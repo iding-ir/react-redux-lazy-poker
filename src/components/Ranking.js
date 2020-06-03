@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./ranking.css";
+import "./Ranking.css";
+
 const Ranking = (props) => {
   const { players } = props;
 

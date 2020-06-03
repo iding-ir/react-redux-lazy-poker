@@ -1,9 +1,9 @@
 import React from "react";
 
-import "./controls.css";
-import Dealer from "./dealer";
-import Restart from "./restart";
-import Logs from "./logs";
+import "./Controls.css";
+import Dealer from "./Dealer";
+import Restart from "./Restart";
+import Logs from "./Logs";
 
 const Controls = (props) => {
   const { stage, autoplay, deal, toggleAutoplay, restart, logs } = props;

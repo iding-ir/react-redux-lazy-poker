@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./deck.css";
-import Card from "./card";
+import "./Deck.css";
+import Card from "./Card";
 import { defaultCard } from "../constants/game";
 import {
   NUMBER_OF_CARDS_FOR_FLOP,

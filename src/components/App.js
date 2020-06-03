@@ -5,7 +5,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 import pokersolver from "pokersolver";
 
-import "./app.css";
+import "./App.css";
 import {
   addPlayer,
   removePlayer,
@@ -42,11 +42,11 @@ import {
   HANDPOINTS,
 } from "../configs";
 import { repeat } from "../utils/repeat";
-import Navbar from "./navbar";
-import Players from "./players";
-import Ranking from "./ranking";
-import Deck from "./deck";
-import Controls from "./controls";
+import Navbar from "./Navbar";
+import Players from "./Players";
+import Ranking from "./Ranking";
+import Deck from "./Deck";
+import Controls from "./Controls";
 
 class App extends Component {
   componentDidMount() {
