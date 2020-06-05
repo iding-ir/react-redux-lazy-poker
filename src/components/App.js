@@ -5,7 +5,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 import pokersolver from "pokersolver";
 
-import "./App.css";
+import "./App.scss";
 import {
   addPlayer,
   removePlayer,

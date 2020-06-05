@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Players.css";
+import "./Players.scss";
 import Player from "./Player";
 import { MAXIMUM_NUMBER_OF_PLAYERS } from "../configs";
 

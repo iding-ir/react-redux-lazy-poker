@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./Navbar.css";
+import "./Navbar.scss";
 
 const Navbar = () => {
   return (
     <React.Fragment>
-      <nav className="blue darken-3">
+      <nav className="navbar blue darken-3">
         <div className="nav-wrapper">
           <div className="navbar-container">
             <a href="http://iding.ir" className="logo">

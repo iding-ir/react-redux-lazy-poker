@@ -1,0 +1,46 @@
+.ranking-table {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+
+  thead {
+    tr {
+      border-bottom: var(--border-thickness) solid var(--color-secondary-light);
+
+      th {
+        font-size: 1.1rem;
+        line-height: 3;
+        padding: 0 var(--padding-md);
+
+        @media only screen and (min-width: 992px) {
+          font-size: 1.2rem;
+          line-height: 4;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border: none;
+
+      &:nth-of-type(2n + 1) {
+        background-color: var(--fade-grey-sm);
+      }
+
+      &:nth-of-type(2n) {
+        background-color: var(--fade-dark-sm);
+      }
+
+      td {
+        font-size: 1rem;
+        line-height: 2;
+        padding: 0 var(--padding-md);
+
+        @media only screen and (min-width: 992px) {
+          font-size: 1.1rem;
+          line-height: 3;
+        }
+      }
+    }
+  }
+}

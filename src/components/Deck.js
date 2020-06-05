@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Deck.css";
+import "./Deck.scss";
 import Card from "./Card";
 import { defaultCard } from "../constants/game";
 import {

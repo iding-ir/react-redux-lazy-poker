@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Controls.css";
+import "./Controls.scss";
 import Dealer from "./Dealer";
 import Restart from "./Restart";
 import Logs from "./Logs";
