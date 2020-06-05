@@ -212,6 +212,7 @@ class App extends Component {
       removePlayers,
       refreshDealer,
       clearLogs,
+      endGame,
       turnAutoplayOff,
     } = this.props;
 
@@ -220,6 +221,8 @@ class App extends Component {
     setStage(STAGE_NEW_ROUND);
 
     clearLogs();
+
+    endGame();
 
     removePlayers();
 
