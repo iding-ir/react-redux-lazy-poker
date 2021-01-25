@@ -6,7 +6,7 @@ import "./css/vars.css";
 import "./css/icons.css";
 import "./css/index.css";
 import store from "./stores";
-import App from "./components/App";
+import App from "./components/App/App";
 import "./css/hacks.css";
 
 ReactDOM.render(
