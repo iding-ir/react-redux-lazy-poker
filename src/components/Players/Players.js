@@ -1,8 +1,8 @@
 import React from "react";
 
 import "./Players.scss";
-import Player from "./Player";
-import { MAXIMUM_NUMBER_OF_PLAYERS } from "../configs";
+import Player from "../Player/Player";
+import { MAXIMUM_NUMBER_OF_PLAYERS } from "../../configs";
 
 const Players = (props) => {
   const {

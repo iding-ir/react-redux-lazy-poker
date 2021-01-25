@@ -1,13 +1,13 @@
 import React from "react";
 
 import "./Deck.scss";
-import Card from "./Card";
-import { defaultCard } from "../constants/game";
+import Card from "../Card/Card";
+import { defaultCard } from "../../constants/game";
 import {
   NUMBER_OF_CARDS_FOR_FLOP,
   NUMBER_OF_CARDS_FOR_TURN,
   NUMBER_OF_CARDS_FOR_RIVER,
-} from "../configs";
+} from "../../configs";
 
 const Deck = (props) => {
   let { table } = props.cards;

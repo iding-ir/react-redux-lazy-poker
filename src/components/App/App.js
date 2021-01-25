@@ -13,16 +13,16 @@ import {
   changeName,
   checkName,
   givePoints,
-} from "../actions/players";
-import { moveStage, setStage, startGame, endGame } from "../actions/game";
-import { toggleAutoplay, turnAutoplayOff } from "../actions/autoplay";
+} from "../../actions/players";
+import { moveStage, setStage, startGame, endGame } from "../../actions/game";
+import { toggleAutoplay, turnAutoplayOff } from "../../actions/autoplay";
 import {
   refreshDealer,
   dealPlayer,
   dealTable,
   highlight,
-} from "../actions/cards";
-import { addLog, clearLogs } from "../actions/logs";
+} from "../../actions/cards";
+import { addLog, clearLogs } from "../../actions/logs";
 import {
   STAGE_NEW_ROUND,
   STAGE_PREFLOP,
@@ -30,7 +30,7 @@ import {
   STAGE_TURN,
   STAGE_RIVER,
   STAGE_RESULT,
-} from "../constants";
+} from "../../constants";
 import {
   NUMBER_OF_DEFAULT_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
@@ -40,13 +40,13 @@ import {
   AUTOPLAY_DELAY_MS,
   TOAST_DURATION,
   HANDPOINTS,
-} from "../configs";
-import { repeat } from "../utils/repeat";
-import Navbar from "./Navbar";
-import Players from "./Players";
-import Ranking from "./Ranking";
-import Deck from "./Deck";
-import Controls from "./Controls";
+} from "../../configs";
+import { repeat } from "../../utils/repeat";
+import Navbar from "../Navbar/Navbar";
+import Players from "../Players/Players";
+import Ranking from "../Ranking/Ranking";
+import Deck from "../Deck/Deck";
+import Controls from "../Controls/Controls";
 
 class App extends Component {
   componentDidMount() {

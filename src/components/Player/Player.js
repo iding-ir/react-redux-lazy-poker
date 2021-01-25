@@ -1,11 +1,11 @@
 import React from "react";
 
-import Card from "./Card";
-import { defaultCard } from "../constants/game";
+import Card from "../Card/Card";
+import { defaultCard } from "../../constants/game";
 import {
   MINIMUM_NUMBER_OF_PLAYERS,
   NUMBER_OF_CARDS_PER_PLAYER,
-} from "../configs";
+} from "../../configs";
 
 const Player = (props) => {
   const { hand, players, player, removePlayer, changeName, checkName } = props;
